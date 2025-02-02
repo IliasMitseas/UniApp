@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="title" type="java.lang.String" value="&#x3a0;&#x3c1;&#x3bf;&#x3b2;&#x3bf;&#x3bb;&#x3ae; &#x3a0;&#x3b1;&#x3bd;&#x3b5;&#x3c0;&#x3b9;&#x3c3;&#x3c4;&#x3b7;&#x3bc;&#x3af;&#x3bf;&#x3c5;"/>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="66" green="66" red="ff" type="rgb"/>
+    </Property>
+    <Property name="modal" type="boolean" value="true"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabelMealId" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblUniversityName" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblMealCategory" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblMealArea" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblMealName1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblMealName2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="txtMealName2" pref="692" max="32767" attributes="0"/>
+                                  <Component id="txtMealCategory" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtMealName1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtUniversityName" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtUniversityName1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtUniversityName2" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="lblMealName3" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="cmdDelete" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cmdInsert" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cmdUpdate" pref="855" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jLabelMealId" min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblUniversityName" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtMealName2" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblMealCategory" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtMealCategory" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblMealArea" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtMealName1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblMealName1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="txtUniversityName" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtUniversityName1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMealName2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblMealName3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtUniversityName2" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="250" max="32767" attributes="0"/>
+              <Component id="cmdInsert" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="cmdUpdate" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="cmdDelete" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="lblUniversityName">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x38c;&#x3bd;&#x3bf;&#x3bc;&#x3b1; &#x3a0;&#x3b1;&#x3bd;&#x3b5;&#x3c0;&#x3b9;&#x3c3;&#x3c4;&#x3b7;&#x3bc;&#x3af;&#x3bf;&#x3c5;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtUniversityName">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblMealCategory">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Domain"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtMealCategory">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMealCategoryActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblMealArea">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Web_Page"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="cmdInsert">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x391;&#x3c0;&#x3bf;&#x3b8;&#x3ae;&#x3ba;&#x3b5;&#x3c5;&#x3c3;&#x3b7; &#x3b4;&#x3b5;&#x3b4;&#x3bf;&#x3bc;&#x3ad;&#x3bd;&#x3c9;&#x3bd; &#x3a0;&#x3b1;&#x3bd;&#x3b5;&#x3c0;&#x3b9;&#x3c3;&#x3c4;&#x3b7;&#x3bc;&#x3af;&#x3bf;&#x3c5; &#x3c3;&#x3c4;&#x3b7; &#x3b2;&#x3ac;&#x3c3;&#x3b7;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdInsertActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="cmdUpdate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x395;&#x3c0;&#x3b5;&#x3be;&#x3b5;&#x3c1;&#x3b3;&#x3b1;&#x3c3;&#x3af;&#x3b1; &#x3b4;&#x3b5;&#x3b4;&#x3bf;&#x3bc;&#x3ad;&#x3bd;&#x3c9;&#x3bd; &#x3c0;&#x3b1;&#x3bd;&#x3b5;&#x3c0;&#x3b9;&#x3c3;&#x3c4;&#x3b7;&#x3bc;&#x3af;&#x3bf;&#x3c5;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdUpdateActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="cmdDelete">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x394;&#x3b9;&#x3b1;&#x3b3;&#x3c1;&#x3b1;&#x3c6;&#x3ae; &#x3b4;&#x3b5;&#x3b4;&#x3bf;&#x3bc;&#x3ad;&#x3bd;&#x3c9;&#x3bd; &#x3c0;&#x3b1;&#x3bd;&#x3b5;&#x3c0;&#x3b9;&#x3c3;&#x3c4;&#x3b7;&#x3bc;&#x3af;&#x3bf;&#x3c5;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdDeleteActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelMealId">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="sansserif" size="14" style="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblMealName1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Alpha_two_code"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtMealName1">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblMealName2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Country"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblMealName3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="State-province"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtMealName2">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtUniversityName1">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtUniversityName2">
+    </Component>
+  </SubComponents>
+</Form>
