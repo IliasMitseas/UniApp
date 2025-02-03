@@ -78,7 +78,7 @@ public class JsonHttpRequester {
             String domain = universityJson.getAsJsonArray("domains").get(0).getAsString();
             String webPage = universityJson.getAsJsonArray("web_pages").get(0).getAsString();
 
-            return new University(name, alphaTwoCode, country, stateProvince, domain, webPage);
+            return new University(name, domain, webPage, alphaTwoCode, country, stateProvince);
         }
 
         return null;

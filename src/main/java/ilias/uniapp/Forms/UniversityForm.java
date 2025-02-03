@@ -31,8 +31,9 @@ public class UniversityForm extends javax.swing.JDialog {
     public UniversityForm(University universityParam) {
         //dieuthetisi ton GUI stixion
         initComponents();
+
         //perno ta stixia pou perasan apo alli forma se auti topika
-        this.u = universityParam;
+        u = universityParam;
 
 
         //topotheto tin forma
@@ -40,8 +41,9 @@ public class UniversityForm extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         setModal(true);
 
-        //University universityInDB = Connector.getMeal(u.getId());
         University uni = JsonHttpRequester.getUniversity(u.getName());
+
+        //University universityInDB = Connector.getMeal(u.getId());
         //universityExistsInDB = universityInDB != null;
         //if (universityExistsInDB) {
         //    this.u = universityInDB;
@@ -49,14 +51,16 @@ public class UniversityForm extends javax.swing.JDialog {
         //}
 
         //emanizo ta stoxia stin othoni
-        displayMealData();
+        displayMealData(u);
+
+
         //diortono tin prosvasi sta koumpia
         //checkButtonsEnabled();
     }
 
     //methodos gia na emfanizei ta stoixeia geumatos stin forma
     //iparxoun idi gemata stin metabliti m
-    private void displayMealData() {
+    private void displayMealData(University u) {
         jLabelUniversityId.setText(u.getId());
         txtUniversityName.setText(u.getName());
         txtUniversityDomain.setText(u.getDomain());
@@ -66,7 +70,7 @@ public class UniversityForm extends javax.swing.JDialog {
         txtUniversityStateProvince.setText(u.getStateProvince());
     }
 
-    //analoga tou an ipirxe stin basia naoigoklin ta katallila plhktra gia 
+    //analoga tou an ipirxe stin basia naoigoklin ta katallila plhktra gia
     //dieukolinsi xristi se energeies
 //    private void checkButtonsEnabled() {
 //        cmdInsert.setEnabled(!universityExistsInDB);
@@ -249,7 +253,7 @@ public class UniversityForm extends javax.swing.JDialog {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
