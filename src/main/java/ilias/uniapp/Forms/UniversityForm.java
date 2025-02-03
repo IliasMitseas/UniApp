@@ -4,10 +4,13 @@
  */
 package ilias.uniapp.Forms;
 
-import com.eap.pli24.mealsapp.db.Connector;
-import static com.eap.pli24.mealsapp.db.Connector.deleteMealView;
-import static com.eap.pli24.mealsapp.db.Connector.insertMealView;
-import com.eap.pli24.mealsapp.db.Meal;
+
+//import com.eap.pli24.mealsapp.db.Connector;
+//import static com.eap.pli24.mealsapp.db.Connector.deleteMealView;
+//import static com.eap.pli24.mealsapp.db.Connector.insertMealView;
+
+import ilias.uniapp.db.University;
+import ilias.uniapp.json.JsonHttpRequester;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -21,62 +24,55 @@ import javax.swing.JOptionPane;
 //forma emfanisis stixion geumatos
 public class UniversityForm extends javax.swing.JDialog {
 
-    private Meal m;//metabliti pou periexei ta stoixeia kai tis allages otan xrieazetai
-    private boolean mealExistsInDB = false; //metabliti gia anigma pliktron formas
+    private University u;//metabliti pou periexei ta stoixeia kai tis allages otan xrieazetai
+    // boolean universityExistsInDB = false; //metabliti gia anigma pliktron formas
 
     //parametro to geuma gia na mporei na emfanisei ta stoixeia tou
-    public UniversityForm(Meal mealParam) {
+    public UniversityForm(University universityParam) {
         //dieuthetisi ton GUI stixion
         initComponents();
         //perno ta stixia pou perasan apo alli forma se auti topika
-        this.m = mealParam;
+        this.u = universityParam;
 
-        try {
-            URL url = new URL(m.getImageURLString());
-            BufferedImage bufferedImage = ImageIO.read(url);
-            Image image = bufferedImage.getScaledInstance(jLabelImage.getWidth(), jLabelImage.getHeight(), Image.SCALE_DEFAULT);
-            ImageIcon icon = new ImageIcon(image);
-            jLabelImage.setIcon(icon);
-        } catch (MalformedURLException mue) {
-        } catch (IOException ioe) {
-        }
 
         //topotheto tin forma
         pack();
         setLocationRelativeTo(null);
         setModal(true);
 
-        Meal mealInDB = Connector.getMeal(m.getId());
-        mealExistsInDB = mealInDB != null;
-        if (mealExistsInDB) {
-            this.m = mealInDB;
-            Connector.updateMealViewViews(m);
-        }
+        //University universityInDB = Connector.getMeal(u.getId());
+        University uni = JsonHttpRequester.getUniversity(u.getName());
+        //universityExistsInDB = universityInDB != null;
+        //if (universityExistsInDB) {
+        //    this.u = universityInDB;
+        //    Connector.updateMealViewViews(u);
+        //}
 
         //emanizo ta stoxia stin othoni
         displayMealData();
         //diortono tin prosvasi sta koumpia
-        checkButtonsEnabled();
+        //checkButtonsEnabled();
     }
 
     //methodos gia na emfanizei ta stoixeia geumatos stin forma
     //iparxoun idi gemata stin metabliti m
     private void displayMealData() {
-        jLabelMealId.setText(m.getId());
-        txtUniversityName.setText(m.getName());
-        txtMealCategory.setText(m.getCategory());
-        txtMealArea.setText(m.getArea());
-        txtMealInstructions.setText(m.getInstructions());
-        txtMealInstructions.setCaretPosition(0);
+        jLabelUniversityId.setText(u.getId());
+        txtUniversityName.setText(u.getName());
+        txtUniversityDomain.setText(u.getDomain());
+        txtUniversityWebPage.setText(u.getWebPage());
+        txtUniversityAlphaCode.setText(u.getAlphaTwoCode());
+        txtUniversityCountry.setText(u.getCountry());
+        txtUniversityStateProvince.setText(u.getStateProvince());
     }
 
     //analoga tou an ipirxe stin basia naoigoklin ta katallila plhktra gia 
     //dieukolinsi xristi se energeies
-    private void checkButtonsEnabled() {
-        cmdInsert.setEnabled(!mealExistsInDB);
-        cmdUpdate.setEnabled(mealExistsInDB);
-        cmdDelete.setEnabled(mealExistsInDB);
-    }
+//    private void checkButtonsEnabled() {
+//        cmdInsert.setEnabled(!universityExistsInDB);
+//        cmdUpdate.setEnabled(universityExistsInDB);
+//        cmdDelete.setEnabled(universityExistsInDB);
+//    }
 
     private void setButtonsDisabled() {
         cmdInsert.setEnabled(false);
@@ -94,21 +90,21 @@ public class UniversityForm extends javax.swing.JDialog {
     private void initComponents() {
 
         lblUniversityName = new javax.swing.JLabel();
-        txtUniversityName = new javax.swing.JTextField();
-        lblMealCategory = new javax.swing.JLabel();
-        txtMealCategory = new javax.swing.JTextField();
-        lblMealArea = new javax.swing.JLabel();
+        txtUniversityAlphaCode = new javax.swing.JTextField();
+        lblUniversityDomain = new javax.swing.JLabel();
+        txtUniversityDomain = new javax.swing.JTextField();
+        lblUniversityWebPage = new javax.swing.JLabel();
         cmdInsert = new javax.swing.JButton();
         cmdUpdate = new javax.swing.JButton();
         cmdDelete = new javax.swing.JButton();
-        jLabelMealId = new javax.swing.JLabel();
-        lblMealName1 = new javax.swing.JLabel();
-        txtMealName1 = new javax.swing.JTextField();
-        lblMealName2 = new javax.swing.JLabel();
-        lblMealName3 = new javax.swing.JLabel();
-        txtMealName2 = new javax.swing.JTextField();
-        txtUniversityName1 = new javax.swing.JTextField();
-        txtUniversityName2 = new javax.swing.JTextField();
+        jLabelUniversityId = new javax.swing.JLabel();
+        javax.swing.JLabel lblUniversityAlphaTwoCode = new javax.swing.JLabel();
+        txtUniversityWebPage = new javax.swing.JTextField();
+        lblUniversityCountry = new javax.swing.JLabel();
+        lblUniversityStateProvince = new javax.swing.JLabel();
+        txtUniversityName = new javax.swing.JTextField();
+        txtUniversityCountry = new javax.swing.JTextField();
+        txtUniversityStateProvince = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Προβολή Πανεπιστημίου");
@@ -117,46 +113,52 @@ public class UniversityForm extends javax.swing.JDialog {
 
         lblUniversityName.setText("Όνομα Πανεπιστημίου");
 
-        lblMealCategory.setText("Domain");
-
-        txtMealCategory.addActionListener(new java.awt.event.ActionListener() {
+        txtUniversityAlphaCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMealCategoryActionPerformed(evt);
+                txtUniversityAlphaCodeActionPerformed(evt);
             }
         });
 
-        lblMealArea.setText("Web_Page");
+        lblUniversityDomain.setText("Domain");
+
+        txtUniversityDomain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUniversityDomainActionPerformed(evt);
+            }
+        });
+
+        lblUniversityWebPage.setText("Web_Page");
 
         cmdInsert.setText("Αποθήκευση δεδομένων Πανεπιστημίου στη βάση");
         cmdInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdInsertActionPerformed(evt);
+                //cmdInsertActionPerformed(evt);
             }
         });
 
         cmdUpdate.setText("Επεξεργασία δεδομένων πανεπιστημίου");
         cmdUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdUpdateActionPerformed(evt);
+                //cmdUpdateActionPerformed(evt);
             }
         });
 
         cmdDelete.setText("Διαγραφή δεδομένων πανεπιστημίου");
         cmdDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdDeleteActionPerformed(evt);
+                //cmdDeleteActionPerformed(evt);
             }
         });
 
-        jLabelMealId.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        jLabelMealId.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelMealId.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabelUniversityId.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        jLabelUniversityId.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelUniversityId.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        lblMealName1.setText("Alpha_two_code");
+        lblUniversityAlphaTwoCode.setText("Alpha_two_code");
 
-        lblMealName2.setText("Country");
+        lblUniversityCountry.setText("Country");
 
-        lblMealName3.setText("State-province");
+        lblUniversityStateProvince.setText("State-province");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,25 +167,25 @@ public class UniversityForm extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelMealId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelUniversityId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblUniversityName)
-                                    .addComponent(lblMealCategory)
-                                    .addComponent(lblMealArea)
-                                    .addComponent(lblMealName1)
-                                    .addComponent(lblMealName2))
+                                    .addComponent(lblUniversityDomain)
+                                    .addComponent(lblUniversityWebPage)
+                                    .addComponent(lblUniversityAlphaTwoCode)
+                                    .addComponent(lblUniversityCountry))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtMealName2, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
-                                    .addComponent(txtMealCategory, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtMealName1, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtUniversityName, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtUniversityName1, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtUniversityName2, javax.swing.GroupLayout.Alignment.LEADING)))
-                            .addComponent(lblMealName3))
+                                    .addComponent(txtUniversityName, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
+                                    .addComponent(txtUniversityDomain, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtUniversityWebPage, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtUniversityAlphaCode, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtUniversityCountry, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtUniversityStateProvince, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addComponent(lblUniversityStateProvince))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -195,32 +197,32 @@ public class UniversityForm extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabelMealId, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelUniversityId, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblUniversityName)
-                    .addComponent(txtMealName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUniversityName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblMealCategory)
-                    .addComponent(txtMealCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblUniversityDomain)
+                    .addComponent(txtUniversityDomain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblMealArea)
-                    .addComponent(txtMealName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblUniversityWebPage)
+                    .addComponent(txtUniversityWebPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblMealName1)
+                    .addComponent(lblUniversityAlphaTwoCode)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtUniversityName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtUniversityAlphaCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtUniversityName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblMealName2))))
+                            .addComponent(txtUniversityCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblUniversityCountry))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblMealName3)
-                    .addComponent(txtUniversityName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblUniversityStateProvince)
+                    .addComponent(txtUniversityStateProvince, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
                 .addComponent(cmdInsert)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -232,78 +234,18 @@ public class UniversityForm extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-   //prosthesi neon stoixeion stin basi geumaton
-    private void cmdInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdInsertActionPerformed
-        //apothikeui stin basi ta stoixeia tou geumatos
-        Connector.insertMeal(m);
-        //enimerose kai ta stoixeia ton views
-        insertMealView(m);
-        //diorthose pia kumpia prepi na einai anoikta
-        mealExistsInDB = true;
-        checkButtonsEnabled();
-    }//GEN-LAST:event_cmdInsertActionPerformed
-    //enimerosi tisbasis me tis allages pou eginan apo ton xristi
-    private void cmdUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdUpdateActionPerformed
 
-        int answer
-                = JOptionPane.showConfirmDialog(this, "Να αποθηκευθούν οι αλλαγές;",
-                        "Απαιτείται επιβεβαίωση", JOptionPane.YES_NO_OPTION);
 
-        if (answer == JOptionPane.YES_OPTION) {
-
-            m.setName(txtUniversityName.getText());
-            m.setCategory(txtMealCategory.getText());
-            m.setArea(txtMealArea.getText());
-            m.setInstructions(txtMealInstructions.getText());
-
-            Connector.saveMeal(m);
-            JOptionPane.showMessageDialog(this,
-                    "Οι αλλαγές σας\n"
-                    +"αποθηκεύτηκαν στη βάση επιτυχώς!\n", "Επιτυχής αλλαγή δεδομένων γεύματος",
-                    JOptionPane.INFORMATION_MESSAGE);
-        }
-        if (answer == JOptionPane.NO_OPTION) {
-            displayMealData();
-        }
-        //diorthose pia kumpia prepi na einai anoikta
-
-        checkButtonsEnabled();
-    }//GEN-LAST:event_cmdUpdateActionPerformed
-//diagrafi geumatos apo tin basi
-    private void cmdDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdDeleteActionPerformed
-
-        int answer
-                = JOptionPane.showConfirmDialog(this, "Να διαγραφεί το γεύμα;",
-                        "Απαιτείται επιβεβαίωση", JOptionPane.YES_NO_OPTION);
-
-        if (answer == JOptionPane.YES_OPTION) {
-            //diegrapse apo tin basi 
-            deleteMealView(m);
-
-            Connector.deleteMeal(m);
-            mealExistsInDB = false;
-            setButtonsDisabled();
-            JOptionPane.showMessageDialog(this,
-                    "Το γεύμα διαγράφηκε από τη βάση επιτυχώς!\n"
-                    + "Για να συνεχίσετε σε νέα αναζήτηση γεύματος\n"
-                    + "   κλείστε την οθόνη «Προβολή γεύματος»", "Επιτυχής διαγραφή γεύματος",
-                    JOptionPane.INFORMATION_MESSAGE);
-
-        }
-        if (answer == JOptionPane.NO_OPTION) {
-            displayMealData();
-            JOptionPane.showMessageDialog(this,
-                    "Το γεύμα δεν διαγράφηκε!", "Διατήρηση γεύματος στη βάση δεδομένων",
-                    JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_cmdDeleteActionPerformed
-
-    private void txtMealCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMealCategoryActionPerformed
+    private void txtUniversityDomainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUniversityDomainActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtMealCategoryActionPerformed
+    }//GEN-LAST:event_txtUniversityDomainActionPerformed
+
+    private void txtUniversityAlphaCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUniversityAlphaCodeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUniversityAlphaCodeActionPerformed
 
     //methodos gia emfanisi tis formas stin othoni
-    public static void showMealForm(Meal meal) {
+    public static void showMealForm(University university) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -337,7 +279,7 @@ public class UniversityForm extends javax.swing.JDialog {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new UniversityForm(meal).setVisible(true);
+            new UniversityForm(university).setVisible(true);
         });
     }
 
@@ -345,18 +287,91 @@ public class UniversityForm extends javax.swing.JDialog {
     private javax.swing.JButton cmdDelete;
     private javax.swing.JButton cmdInsert;
     private javax.swing.JButton cmdUpdate;
-    private javax.swing.JLabel jLabelMealId;
-    private javax.swing.JLabel lblMealArea;
-    private javax.swing.JLabel lblMealCategory;
-    private javax.swing.JLabel lblMealName1;
-    private javax.swing.JLabel lblMealName2;
-    private javax.swing.JLabel lblMealName3;
+    private javax.swing.JLabel jLabelUniversityId;
+    private javax.swing.JLabel lblUniversityCountry;
+    private javax.swing.JLabel lblUniversityDomain;
     private javax.swing.JLabel lblUniversityName;
-    private javax.swing.JTextField txtMealCategory;
-    private javax.swing.JTextField txtMealName1;
-    private javax.swing.JTextField txtMealName2;
+    private javax.swing.JLabel lblUniversityStateProvince;
+    private javax.swing.JLabel lblUniversityWebPage;
+    private javax.swing.JTextField txtUniversityAlphaCode;
+    private javax.swing.JTextField txtUniversityCountry;
+    private javax.swing.JTextField txtUniversityDomain;
     private javax.swing.JTextField txtUniversityName;
-    private javax.swing.JTextField txtUniversityName1;
-    private javax.swing.JTextField txtUniversityName2;
+    private javax.swing.JTextField txtUniversityStateProvince;
+    private javax.swing.JTextField txtUniversityWebPage;
     // End of variables declaration//GEN-END:variables
 }
+
+
+
+
+//   //prosthesi neon stoixeion stin basi geumaton
+//    private void cmdInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdInsertActionPerformed
+//        //apothikeui stin basi ta stoixeia tou geumatos
+//        Connector.insertMeal(m);
+//        //enimerose kai ta stoixeia ton views
+//        insertMealView(m);
+//        //diorthose pia kumpia prepi na einai anoikta
+//        mealExistsInDB = true;
+//        checkButtonsEnabled();
+//    }//GEN-LAST:event_cmdInsertActionPerformed
+//
+//
+//    //enimerosi tisbasis me tis allages pou eginan apo ton xristi
+//    private void cmdUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdUpdateActionPerformed
+//
+//        int answer
+//                = JOptionPane.showConfirmDialog(this, "Να αποθηκευθούν οι αλλαγές;",
+//                        "Απαιτείται επιβεβαίωση", JOptionPane.YES_NO_OPTION);
+//
+//        if (answer == JOptionPane.YES_OPTION) {
+//
+//            m.setName(txtUniversityAlphaCode.getText());
+//            m.setCategory(txtUniversityDomain.getText());
+//            m.setArea(txtMealArea.getText());
+//            m.setInstructions(txtMealInstructions.getText());
+//
+//            Connector.saveMeal(m);
+//            JOptionPane.showMessageDialog(this,
+//                    "Οι αλλαγές σας\n"
+//                    +"αποθηκεύτηκαν στη βάση επιτυχώς!\n", "Επιτυχής αλλαγή δεδομένων γεύματος",
+//                    JOptionPane.INFORMATION_MESSAGE);
+//        }
+//        if (answer == JOptionPane.NO_OPTION) {
+//            displayMealData();
+//        }
+//        //diorthose pia kumpia prepi na einai anoikta
+//
+//        checkButtonsEnabled();
+//    }//GEN-LAST:event_cmdUpdateActionPerformed
+
+
+
+//diagrafi geumatos apo tin basi
+//    private void cmdDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdDeleteActionPerformed
+//
+//        int answer
+//                = JOptionPane.showConfirmDialog(this, "Να διαγραφεί το γεύμα;",
+//                        "Απαιτείται επιβεβαίωση", JOptionPane.YES_NO_OPTION);
+//
+//        if (answer == JOptionPane.YES_OPTION) {
+//            //diegrapse apo tin basi
+//            deleteMealView(m);
+//
+//            Connector.deleteMeal(m);
+//            mealExistsInDB = false;
+//            setButtonsDisabled();
+//            JOptionPane.showMessageDialog(this,
+//                    "Το γεύμα διαγράφηκε από τη βάση επιτυχώς!\n"
+//                    + "Για να συνεχίσετε σε νέα αναζήτηση γεύματος\n"
+//                    + "   κλείστε την οθόνη «Προβολή γεύματος»", "Επιτυχής διαγραφή γεύματος",
+//                    JOptionPane.INFORMATION_MESSAGE);
+//
+//        }
+//        if (answer == JOptionPane.NO_OPTION) {
+//            displayMealData();
+//            JOptionPane.showMessageDialog(this,
+//                    "Το γεύμα δεν διαγράφηκε!", "Διατήρηση γεύματος στη βάση δεδομένων",
+//                    JOptionPane.INFORMATION_MESSAGE);
+//        }
+//    }//GEN-LAST:event_cmdDeleteActionPerformed

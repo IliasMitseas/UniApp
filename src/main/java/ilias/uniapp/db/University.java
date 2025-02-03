@@ -18,7 +18,7 @@ public class University {
     private String stateProvince;
 
 
-    public University(String id, String name, String domain, String webPage, String alphaTwoCode, String country, String stateProvince) {
+    public University(String name, String domain, String webPage, String alphaTwoCode, String country, String stateProvince) {
         this.id = id;
         this.name = name;
         this.domain = domain;

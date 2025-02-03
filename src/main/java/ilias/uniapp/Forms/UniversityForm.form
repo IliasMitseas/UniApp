@@ -31,28 +31,28 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabelMealId" max="32767" attributes="0"/>
+                  <Component id="jLabelUniversityId" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblUniversityName" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblMealCategory" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblMealArea" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblMealName1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblMealName2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblUniversityDomain" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblUniversityWebPage" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblUniversityAlphaTwoCode" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblUniversityCountry" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="txtMealName2" pref="692" max="32767" attributes="0"/>
-                                  <Component id="txtMealCategory" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtMealName1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtUniversityName" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtUniversityName1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtUniversityName2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtUniversityName" pref="692" max="32767" attributes="0"/>
+                                  <Component id="txtUniversityDomain" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtUniversityWebPage" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtUniversityAlphaCode" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtUniversityCountry" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtUniversityStateProvince" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="lblMealName3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblUniversityStateProvince" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -71,38 +71,38 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jLabelMealId" min="-2" pref="18" max="-2" attributes="0"/>
+              <Component id="jLabelUniversityId" min="-2" pref="18" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblUniversityName" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtMealName2" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtUniversityName" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblMealCategory" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtMealCategory" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblUniversityDomain" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtUniversityDomain" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblMealArea" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtMealName1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblUniversityWebPage" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtUniversityWebPage" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblMealName1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblUniversityAlphaTwoCode" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="txtUniversityName" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtUniversityAlphaCode" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtUniversityName1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMealName2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtUniversityCountry" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblUniversityCountry" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblMealName3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtUniversityName2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblUniversityStateProvince" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtUniversityStateProvince" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="250" max="32767" attributes="0"/>
               <Component id="cmdInsert" min="-2" max="-2" attributes="0"/>
@@ -121,19 +121,22 @@
         <Property name="text" type="java.lang.String" value="&#x38c;&#x3bd;&#x3bf;&#x3bc;&#x3b1; &#x3a0;&#x3b1;&#x3bd;&#x3b5;&#x3c0;&#x3b9;&#x3c3;&#x3c4;&#x3b7;&#x3bc;&#x3af;&#x3bf;&#x3c5;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtUniversityName">
+    <Component class="javax.swing.JTextField" name="txtUniversityAlphaCode">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUniversityAlphaCodeActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblMealCategory">
+    <Component class="javax.swing.JLabel" name="lblUniversityDomain">
       <Properties>
         <Property name="text" type="java.lang.String" value="Domain"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtMealCategory">
+    <Component class="javax.swing.JTextField" name="txtUniversityDomain">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMealCategoryActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUniversityDomainActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblMealArea">
+    <Component class="javax.swing.JLabel" name="lblUniversityWebPage">
       <Properties>
         <Property name="text" type="java.lang.String" value="Web_Page"/>
       </Properties>
@@ -162,7 +165,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdDeleteActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelMealId">
+    <Component class="javax.swing.JLabel" name="jLabelUniversityId">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="sansserif" size="14" style="1"/>
@@ -175,28 +178,32 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblMealName1">
+    <Component class="javax.swing.JLabel" name="lblUniversityAlphaTwoCode">
       <Properties>
         <Property name="text" type="java.lang.String" value="Alpha_two_code"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="true"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
+      </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtMealName1">
+    <Component class="javax.swing.JTextField" name="txtUniversityWebPage">
     </Component>
-    <Component class="javax.swing.JLabel" name="lblMealName2">
+    <Component class="javax.swing.JLabel" name="lblUniversityCountry">
       <Properties>
         <Property name="text" type="java.lang.String" value="Country"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblMealName3">
+    <Component class="javax.swing.JLabel" name="lblUniversityStateProvince">
       <Properties>
         <Property name="text" type="java.lang.String" value="State-province"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtMealName2">
+    <Component class="javax.swing.JTextField" name="txtUniversityName">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtUniversityName1">
+    <Component class="javax.swing.JTextField" name="txtUniversityCountry">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtUniversityName2">
+    <Component class="javax.swing.JTextField" name="txtUniversityStateProvince">
     </Component>
   </SubComponents>
 </Form>

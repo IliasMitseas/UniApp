@@ -1,4 +1,8 @@
 package ilias.uniapp.Forms;
+import ilias.uniapp.db.University;
+import ilias.uniapp.json.JsonHttpRequester;
+
+import javax.swing.*;
 
 //klasi gia anazitisi geumatos
 public class UniversitySearchForm extends javax.swing.JDialog {
@@ -89,7 +93,23 @@ public class UniversitySearchForm extends javax.swing.JDialog {
     }
     
     private void cmdSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSearchActionPerformed
-   
+        lblError.setText("");  // Clear any previous error
+
+        String universityName = txtUniversity.getText().trim();
+
+        if (universityName.isEmpty()) {
+            lblError.setText("Παρακαλώ εισάγετε όνομα πανεπιστημίου.");
+            return;
+        }
+
+        University university = JsonHttpRequester.getUniversity(universityName);
+
+        if (university != null) {
+            UniversityForm.showMealForm(university);
+
+        } else {
+            lblError.setText("Το πανεπιστήμιο δεν βρέθηκε.");
+        }
     }//GEN-LAST:event_cmdSearchActionPerformed
 
     private void txtUniversityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUniversityActionPerformed
