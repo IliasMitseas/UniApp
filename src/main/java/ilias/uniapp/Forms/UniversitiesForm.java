@@ -22,17 +22,17 @@ public class UniversitiesForm extends javax.swing.JDialog {
 
         List<String> u = universityParam;
 
-        jListCategories.setEnabled(false);
         jListUniversities.setEnabled(false);
+        jListUniversity.setEnabled(false);
 
         List<String> universities = u;
         DefaultListModel<String> universitiesList = new DefaultListModel<>();
 
-        for (String universityCategory : universities) {
-            universitiesList.addElement(universityCategory);
+        for (String universityName : universities) {
+            universitiesList.addElement(universityName);
         }
-        jListCategories.setModel(universitiesList);
-        jListCategories.setEnabled(true);
+        jListUniversities.setModel(universitiesList);
+        jListUniversities.setEnabled(true);
 
         pack();
         setLocationRelativeTo(null);
@@ -48,35 +48,21 @@ public class UniversitiesForm extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelCountry = new javax.swing.JLabel();
-        jScrollPaneCountry = new javax.swing.JScrollPane();
-        jListCategories = new javax.swing.JList<>();
         jLabelUniversities = new javax.swing.JLabel();
-        jScrollPaneUniversities = new javax.swing.JScrollPane();
+        jScrollPaneCountry = new javax.swing.JScrollPane();
         jListUniversities = new javax.swing.JList<>();
+        jLabelUniversitiesDetails = new javax.swing.JLabel();
+        jScrollPaneUniversities = new javax.swing.JScrollPane();
+        jListUniversity = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Πανεπιστήμια");
 
-        jLabelCountry.setText("Keyword");
-        jLabelCountry.setToolTipText("");
-
-        jListCategories.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jListCategories.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jListCategoriesValueChanged(evt);
-            }
-        });
-        jScrollPaneCountry.setViewportView(jListCategories);
-
         jLabelUniversities.setText("Πανεπιστήμια");
+        jLabelUniversities.setToolTipText("");
 
         jListUniversities.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Uni1", "Uni2", "Uni3", "Uni4", "Uni5" };
+            String[] strings = { "Uni1", "Uni2", "Uni3" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -85,7 +71,21 @@ public class UniversitiesForm extends javax.swing.JDialog {
                 jListUniversitiesValueChanged(evt);
             }
         });
-        jScrollPaneUniversities.setViewportView(jListUniversities);
+        jScrollPaneCountry.setViewportView(jListUniversities);
+
+        jLabelUniversitiesDetails.setText("Details");
+
+        jListUniversity.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Uni1" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jListUniversity.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jListUniversityValueChanged(evt);
+            }
+        });
+        jScrollPaneUniversities.setViewportView(jListUniversity);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,11 +95,11 @@ public class UniversitiesForm extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPaneCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelCountry))
+                    .addComponent(jLabelUniversities))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelUniversities)
+                        .addComponent(jLabelUniversitiesDetails)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPaneUniversities, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
                 .addContainerGap())
@@ -109,8 +109,8 @@ public class UniversitiesForm extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCountry)
-                    .addComponent(jLabelUniversities))
+                    .addComponent(jLabelUniversities)
+                    .addComponent(jLabelUniversitiesDetails))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPaneCountry, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
@@ -121,31 +121,31 @@ public class UniversitiesForm extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jListCategoriesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListCategoriesValueChanged
+    private void jListUniversitiesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListUniversitiesValueChanged
         if (!evt.getValueIsAdjusting()) {
-            jListUniversities.setEnabled(false);
-            List<String> universities = JsonHttpRequester.getUniversities(jListCategories.getSelectedValue());
+            jListUniversity.setEnabled(false);
+            List<String> universities = JsonHttpRequester.getUniversities(jListUniversities.getSelectedValue());
             DefaultListModel<String> universitiesPerWord = new DefaultListModel<>();
 
             for (String universityName : universities) {
                 universitiesPerWord.addElement(universityName);
             }
-            jListUniversities.setModel(universitiesPerWord);
-            jListUniversities.setEnabled(true);
+            jListUniversity.setModel(universitiesPerWord);
+            jListUniversity.setEnabled(true);
         }
-    }//GEN-LAST:event_jListCategoriesValueChanged
+    }//GEN-LAST:event_jListUniversitiesValueChanged
 
-    private void jListUniversitiesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListUniversitiesValueChanged
-        if (!evt.getValueIsAdjusting() && jListUniversities.isEnabled()) {
-            String universityName = jListUniversities.getSelectedValue();
-            jListUniversities.setEnabled(false);
+    private void jListUniversityValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListUniversityValueChanged
+        if (!evt.getValueIsAdjusting() && jListUniversity.isEnabled()) {
+            String universityName = jListUniversity.getSelectedValue();
+            jListUniversity.setEnabled(false);
             University university = JsonHttpRequester.getUniversity(universityName);
             if (university != null) {
                 UniversityForm.showMealForm(university);
             }
-            jListUniversities.setEnabled(true);
+            jListUniversity.setEnabled(true);
         }
-    }//GEN-LAST:event_jListUniversitiesValueChanged
+    }//GEN-LAST:event_jListUniversityValueChanged
 
     /**
      * @param args the command line arguments
@@ -177,48 +177,16 @@ public class UniversitiesForm extends javax.swing.JDialog {
     }
 
     public static void showUniversitiesForm(List <String> u) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UniversityForm.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UniversityForm.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UniversityForm.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UniversityForm.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new UniversitiesForm(u).setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabelCountry;
     private javax.swing.JLabel jLabelUniversities;
-    private javax.swing.JList<String> jListCategories;
+    private javax.swing.JLabel jLabelUniversitiesDetails;
     private javax.swing.JList<String> jListUniversities;
+    private javax.swing.JList<String> jListUniversity;
     private javax.swing.JScrollPane jScrollPaneCountry;
     private javax.swing.JScrollPane jScrollPaneUniversities;
     // End of variables declaration//GEN-END:variables
