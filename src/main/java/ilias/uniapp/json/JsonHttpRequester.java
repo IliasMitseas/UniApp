@@ -18,6 +18,7 @@ import java.util.List;
 public class JsonHttpRequester {
 
     private static final String SEARCH_UNIVERSITY_URL = "http://universities.hipolabs.com/search?name=";
+    private static final String SEARCH_BY_COUNTRY_URL = "http://universities.hipolabs.com/search?country=";
     private static final String UNIVERSITIES = "universities";
     private static final String UNIVERSITY_NAME_STRING = "strUniversity";
 
@@ -98,6 +99,33 @@ public class JsonHttpRequester {
         }
         return universities;
     }
+
+
+    // Μέθοδος για την επιστροφή μιας λίστας πανεπιστημίων (ονόματα) βάση χώρας
+    public static List<String> getUniversitiesByCountry(String countrySearchName) {
+        List<String> universities = new ArrayList<>();
+        if (countrySearchName == null || countrySearchName.isEmpty()) {
+            return universities;
+        }
+
+        String returnedJsonData = getJsonString(SEARCH_BY_COUNTRY_URL, countrySearchName);
+        JsonArray jsonArray = JsonParser.parseString(returnedJsonData).getAsJsonArray();
+
+        // Ελέγχουμε κάθε αποτέλεσμα από τον πίνακα
+        for (JsonElement jsonObject : jsonArray) {
+            if (jsonObject.isJsonObject()) {
+                JsonObject jsonObjectJson = jsonObject.getAsJsonObject();
+                JsonElement universityName = jsonObjectJson.get("name");
+
+                if (universityName != null) {
+                    universities.add(universityName.getAsString());
+                }
+            }
+        }
+        return universities;
+    }
+
+
 }
 
 

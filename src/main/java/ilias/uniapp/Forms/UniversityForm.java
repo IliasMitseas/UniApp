@@ -21,13 +21,15 @@ import javax.swing.ImageIcon;
 
 import javax.swing.JOptionPane;
 
-//forma emfanisis stixion geumatos
+//forma emfanisis stixion panepistimiou
 public class UniversityForm extends javax.swing.JDialog {
 
-    private University u;//metabliti pou periexei ta stoixeia kai tis allages otan xrieazetai
+    //metabliti pou periexei ta stoixeia kai tis allages otan xrieazetai
+    private University u;
+
     // boolean universityExistsInDB = false; //metabliti gia anigma pliktron formas
 
-    //parametro to geuma gia na mporei na emfanisei ta stoixeia tou
+    //parametro to panepistimio gia na mporei na emfanisei ta stoixeia tou
     public UniversityForm(University universityParam) {
         //dieuthetisi ton GUI stixion
         initComponents();
@@ -51,7 +53,7 @@ public class UniversityForm extends javax.swing.JDialog {
         //}
 
         //emanizo ta stoxia stin othoni
-        displayMealData(u);
+        displayUniversityData(u);
 
 
         //diortono tin prosvasi sta koumpia
@@ -60,7 +62,7 @@ public class UniversityForm extends javax.swing.JDialog {
 
     //methodos gia na emfanizei ta stoixeia geumatos stin forma
     //iparxoun idi gemata stin metabliti m
-    private void displayMealData(University u) {
+    private void displayUniversityData(University u) {
         jLabelUniversityId.setText(u.getId());
         txtUniversityName.setText(u.getName());
         txtUniversityDomain.setText(u.getDomain());
@@ -115,7 +117,7 @@ public class UniversityForm extends javax.swing.JDialog {
         setBackground(new java.awt.Color(255, 102, 102));
         setModal(true);
 
-        lblUniversityName.setText("Όνομα Πανεπιστημίου");
+        lblUniversityName.setText("Όνομα Πανεπιστημίου:");
 
         txtUniversityAlphaCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,7 +125,7 @@ public class UniversityForm extends javax.swing.JDialog {
             }
         });
 
-        lblUniversityDomain.setText("Domain");
+        lblUniversityDomain.setText("Domain:");
 
         txtUniversityDomain.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,7 +133,7 @@ public class UniversityForm extends javax.swing.JDialog {
             }
         });
 
-        lblUniversityWebPage.setText("Web_Page");
+        lblUniversityWebPage.setText("Web_Page:");
 
         cmdInsert.setText("Αποθήκευση δεδομένων Πανεπιστημίου στη βάση");
         cmdInsert.addActionListener(new java.awt.event.ActionListener() {
@@ -158,11 +160,11 @@ public class UniversityForm extends javax.swing.JDialog {
         jLabelUniversityId.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelUniversityId.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        lblUniversityAlphaTwoCode.setText("Alpha_two_code");
+        lblUniversityAlphaTwoCode.setText("Alpha_two_code:");
 
-        lblUniversityCountry.setText("Country");
+        lblUniversityCountry.setText("Country:");
 
-        lblUniversityStateProvince.setText("State-province");
+        lblUniversityStateProvince.setText("State-province:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -249,7 +251,7 @@ public class UniversityForm extends javax.swing.JDialog {
     }//GEN-LAST:event_txtUniversityAlphaCodeActionPerformed
 
     //methodos gia emfanisi tis formas stin othoni
-    public static void showMealForm(University university) {
+    public static void showUniversityForm(University university) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

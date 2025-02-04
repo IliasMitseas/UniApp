@@ -5,11 +5,11 @@ import ilias.uniapp.json.JsonHttpRequester;
 import javax.swing.*;
 import java.util.List;
 
-//klasi gia anazitisi panepistimiou
-public class UniversitySearchForm extends javax.swing.JDialog {
+//klasi gia anazitisi panepistimiou vash xwras
+public class CountrySearchForm extends JDialog {
 
     //consturctor
-    public UniversitySearchForm() {
+    public CountrySearchForm() {
         //dhmioyrghse tin forma
         initComponents();
         pack();
@@ -26,25 +26,24 @@ public class UniversitySearchForm extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblUniversity = new javax.swing.JLabel();
-        txtUniversity = new javax.swing.JTextField();
+        lblCountry = new javax.swing.JLabel();
+        txtCountry = new javax.swing.JTextField();
         cmdSearch = new javax.swing.JButton();
         lblError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Αναζήτηση Πανεπιστημίου");
+        setTitle("Αναζήτηση Πανεπιστημίου Βάση Χώρας");
         setBackground(new java.awt.Color(255, 102, 102));
         setModal(true);
 
-        lblUniversity.setBackground(new java.awt.Color(255, 51, 51));
-        lblUniversity.setText("University's Name:");
-        lblUniversity.setToolTipText("");
-        lblUniversity.setPreferredSize(new java.awt.Dimension(300, 300));
+        lblCountry.setBackground(new java.awt.Color(255, 51, 51));
+        lblCountry.setText("Country's Name:");
+        lblCountry.setToolTipText("");
+        lblCountry.setPreferredSize(new java.awt.Dimension(300, 300));
 
-        txtUniversity.setToolTipText("Type university's name");
-        txtUniversity.addActionListener(new java.awt.event.ActionListener() {
+        txtCountry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUniversityActionPerformed(evt);
+                txtCountryActionPerformed(evt);
             }
         });
 
@@ -66,11 +65,11 @@ public class UniversitySearchForm extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblUniversity, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtUniversity, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmdSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)))
+                        .addComponent(txtCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cmdSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -78,9 +77,9 @@ public class UniversitySearchForm extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblUniversity, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmdSearch)
-                    .addComponent(txtUniversity))
+                    .addComponent(txtCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmdSearch))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -89,46 +88,41 @@ public class UniversitySearchForm extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //methodos gia emfanisi tis formas anazitisis
-    public static void showUniversitySearchForm() {
+    //methodos gia emfanisi tis formas anazitisis vash xwras
+    public static void showCountrySearchForm() {
         java.awt.EventQueue.invokeLater(() -> {
-            new UniversitySearchForm().setVisible(true);
+            new CountrySearchForm().setVisible(true);
         });
     }
     
     private void cmdSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSearchActionPerformed
         lblError.setText("");  // Clear any previous error
 
-        String universityName = txtUniversity.getText().trim();
+        String countryName = txtCountry.getText().trim();
 
-        if (universityName.isEmpty()) {
-            lblError.setText("Παρακαλώ εισάγετε όνομα πανεπιστημίου.");
+        if (countryName.isEmpty()) {
+            lblError.setText("Παρακαλώ εισάγετε όνομα χώρας.");
             return;
         }
 
-        //Polla panepisthmiaaaaaaa
-        List<String> universities = JsonHttpRequester.getUniversities(universityName);
-        if (universities!= null && universities.size()>1) {
+        //Emfanizw ta panepistimia vash xwras
+        List<String> universities = JsonHttpRequester.getUniversitiesByCountry(countryName);
+        if (universities!= null) {
             UniversitiesForm.showUniversitiesForm(universities);
-        }
-        else if (universities.size() == 1){
-            University university = JsonHttpRequester.getUniversity(universityName);
-            UniversityForm.showUniversityForm(university);
-
         } else {
             lblError.setText("Το πανεπιστήμιο δεν βρέθηκε.");
         }
     }//GEN-LAST:event_cmdSearchActionPerformed
 
-    private void txtUniversityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUniversityActionPerformed
+    private void txtCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCountryActionPerformed
         cmdSearchActionPerformed(evt);
-    }//GEN-LAST:event_txtUniversityActionPerformed
+    }//GEN-LAST:event_txtCountryActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cmdSearch;
+    private javax.swing.JLabel lblCountry;
     private javax.swing.JLabel lblError;
-    private javax.swing.JLabel lblUniversity;
-    private javax.swing.JTextField txtUniversity;
+    private javax.swing.JTextField txtCountry;
     // End of variables declaration//GEN-END:variables
 }

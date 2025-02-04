@@ -118,7 +118,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="lblUniversityName">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x38c;&#x3bd;&#x3bf;&#x3bc;&#x3b1; &#x3a0;&#x3b1;&#x3bd;&#x3b5;&#x3c0;&#x3b9;&#x3c3;&#x3c4;&#x3b7;&#x3bc;&#x3af;&#x3bf;&#x3c5;"/>
+        <Property name="text" type="java.lang.String" value="&#x38c;&#x3bd;&#x3bf;&#x3bc;&#x3b1; &#x3a0;&#x3b1;&#x3bd;&#x3b5;&#x3c0;&#x3b9;&#x3c3;&#x3c4;&#x3b7;&#x3bc;&#x3af;&#x3bf;&#x3c5;:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtUniversityAlphaCode">
@@ -128,7 +128,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblUniversityDomain">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Domain"/>
+        <Property name="text" type="java.lang.String" value="Domain:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtUniversityDomain">
@@ -138,7 +138,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblUniversityWebPage">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Web_Page"/>
+        <Property name="text" type="java.lang.String" value="Web_Page:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="cmdInsert">
@@ -180,7 +180,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblUniversityAlphaTwoCode">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Alpha_two_code"/>
+        <Property name="text" type="java.lang.String" value="Alpha_two_code:"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="true"/>
@@ -191,12 +191,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblUniversityCountry">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Country"/>
+        <Property name="text" type="java.lang.String" value="Country:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblUniversityStateProvince">
       <Properties>
-        <Property name="text" type="java.lang.String" value="State-province"/>
+        <Property name="text" type="java.lang.String" value="State-province:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtUniversityName">

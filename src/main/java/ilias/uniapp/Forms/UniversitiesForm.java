@@ -14,18 +14,18 @@ import java.util.List;
 
 public class UniversitiesForm extends javax.swing.JDialog {
 
-    private List <String> u;//metabliti pou periexei ta stoixeia kai tis allages otan xrieazetai
+    //metabliti pou periexei ta stoixeia kai tis allages otan xrieazetai
+    private List <String> u;
 
 
     public UniversitiesForm(List universityParam) {
         initComponents();
 
-        List<String> u = universityParam;
 
         jListUniversities.setEnabled(false);
         jListUniversity.setEnabled(false);
 
-        List<String> universities = u;
+        List<String> universities = universityParam;
         DefaultListModel<String> universitiesList = new DefaultListModel<>();
 
         for (String universityName : universities) {
@@ -94,15 +94,13 @@ public class UniversitiesForm extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPaneCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelUniversities))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabelUniversities)
+                    .addComponent(jScrollPaneCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelUniversitiesDetails)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPaneUniversities, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jLabelUniversitiesDetails)
+                    .addComponent(jScrollPaneUniversities, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +139,7 @@ public class UniversitiesForm extends javax.swing.JDialog {
             jListUniversity.setEnabled(false);
             University university = JsonHttpRequester.getUniversity(universityName);
             if (university != null) {
-                UniversityForm.showMealForm(university);
+                UniversityForm.showUniversityForm(university);
             }
             jListUniversity.setEnabled(true);
         }
@@ -150,35 +148,10 @@ public class UniversitiesForm extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    public static void showCategoriesForm() {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UniversitiesForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UniversitiesForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UniversitiesForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UniversitiesForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-    }
-
-    public static void showUniversitiesForm(List <String> u) {
+    public static void showUniversitiesForm(List <String> universities) {
         java.awt.EventQueue.invokeLater(() -> {
-            new UniversitiesForm(u).setVisible(true);
+            new UniversitiesForm(universities).setVisible(true);
         });
     }
 

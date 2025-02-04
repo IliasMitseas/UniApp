@@ -128,7 +128,7 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSearchUniversityActionPerformed
 
     private void jButtonSearchCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchCountryActionPerformed
-        // TODO add your handling code here:
+        CountrySearchForm.showCountrySearchForm();
     }//GEN-LAST:event_jButtonSearchCountryActionPerformed
 
     private void jButtonStatisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStatisticsActionPerformed
