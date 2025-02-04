@@ -63,13 +63,13 @@ public class UniversityForm extends javax.swing.JDialog {
     //methodos gia na emfanizei ta stoixeia geumatos stin forma
     //iparxoun idi gemata stin metabliti m
     private void displayUniversityData(University u) {
-        jLabelUniversityId.setText(u.getId());
+        jLabelUniversityId.setText(String.valueOf(u.getId()));
         txtUniversityName.setText(u.getName());
         txtUniversityDomain.setText(u.getDomain());
-        txtUniversityWebPage.setText(u.getWebPage());
-        txtUniversityAlphaCode.setText(u.getAlphaTwoCode());
+        txtUniversityWebPage.setText(u.getWebpage());
+        txtUniversityAlphaCode.setText(u.getAlphatwocode());
         txtUniversityCountry.setText(u.getCountry());
-        txtUniversityStateProvince.setText(u.getStateProvince());
+        txtUniversityStateProvince.setText(u.getStateprovince());
     }
 
     //analoga tou an ipirxe stin basia naoigoklin ta katallila plhktra gia
