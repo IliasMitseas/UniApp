@@ -17,22 +17,15 @@ import java.util.List;
 
 public class JsonHttpRequester {
 
-    //private static final String MEALS_CATEGORIES_URL = "https://www.themealdb.com/api/json/v1/1/list.php?c=list";
-    //private static final String MEALS_PER_CATEGORY_URL = "https://www.themealdb.com/api/json/v1/1/filter.php?c=";
     private static final String SEARCH_UNIVERSITY_URL = "http://universities.hipolabs.com/search?name=";
+    private static final String UNIVERSITIES = "universities";
+    private static final String UNIVERSITY_NAME_STRING = "strUniversity";
 
-
-
-
-
-    private static String getJsonString(String serverUrl) {
-        return getJsonString(serverUrl, "");
-    }
-
+    // Μέθοδος για την αποστολή HTTP GET αιτήματος και λήψη της απάντησης σε μορφή String
     private static String getJsonString(String serverUrl, String param) {
         String urlParam = "";
         if (param.length() > 0) {
-            // need to encode the string to uri ( convert spaces, parentheses etc )
+            // πρέπει να κωδικοποιήσουμε τη λέξη-παράμετρο στη μορφή URI
             try {
                 urlParam = java.net.URLEncoder.encode(param, "utf-8");
             } catch (UnsupportedEncodingException uee) {
@@ -46,17 +39,15 @@ public class JsonHttpRequester {
                 .uri(URI.create(url))
                 .build();
         try {
-            HttpResponse<String> response
-                    = client.send(request, HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             return response.body();
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
 
+    // Μέθοδος για την επιστροφή ενός συγκεκριμένου πανεπιστημίου
     public static University getUniversity(String universitySearchName) {
-
-
         if (universitySearchName == null || universitySearchName.isEmpty()) {
             return null;
         }
@@ -65,7 +56,7 @@ public class JsonHttpRequester {
         JsonArray jsonArray = JsonParser.parseString(returnedJsonData).getAsJsonArray();
 
         if (jsonArray.size() > 0) {
-            JsonObject universityJson = jsonArray.get(0).getAsJsonObject(); // Get the first result
+            JsonObject universityJson = jsonArray.get(0).getAsJsonObject(); // Παίρνουμε το πρώτο αποτέλεσμα
 
             String name = universityJson.get("name").getAsString();
             String alphaTwoCode = universityJson.get("alpha_two_code").getAsString();
@@ -74,7 +65,7 @@ public class JsonHttpRequester {
                     ? universityJson.get("state-province").getAsString()
                     : "";
 
-            // Extracting the first domain and web page from arrays
+            // Παίρνουμε το πρώτο domain και την πρώτη ιστοσελίδα
             String domain = universityJson.getAsJsonArray("domains").get(0).getAsString();
             String webPage = universityJson.getAsJsonArray("web_pages").get(0).getAsString();
 
@@ -84,7 +75,31 @@ public class JsonHttpRequester {
         return null;
     }
 
+    // Μέθοδος για την επιστροφή μιας λίστας πανεπιστημίων (ονόματα)
+    public static List<String> getUniversities(String universitySearchName) {
+        List<String> universities = new ArrayList<>();
+        if (universitySearchName == null || universitySearchName.isEmpty()) {
+            return universities;
+        }
+
+        String returnedJsonData = getJsonString(SEARCH_UNIVERSITY_URL, universitySearchName);
+        JsonArray jsonArray = JsonParser.parseString(returnedJsonData).getAsJsonArray();
+
+        // Ελέγχουμε κάθε αποτέλεσμα από τον πίνακα
+        for (JsonElement jsonObject : jsonArray) {
+            if (jsonObject.isJsonObject()) {
+                JsonObject jsonObjectJson = jsonObject.getAsJsonObject();
+                JsonElement universityName = jsonObjectJson.get("name");
+
+                if (universityName != null) {
+                    universities.add(universityName.getAsString());
+                }
+            }
+        }
+        return universities;
+    }
 }
+
 
 //    public static List<String> getMealCategories() {
 //        List<String> mealCategories = new ArrayList<>();

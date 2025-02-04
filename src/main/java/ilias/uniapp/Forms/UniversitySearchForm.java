@@ -3,6 +3,7 @@ import ilias.uniapp.db.University;
 import ilias.uniapp.json.JsonHttpRequester;
 
 import javax.swing.*;
+import java.util.List;
 
 //klasi gia anazitisi geumatos
 public class UniversitySearchForm extends javax.swing.JDialog {
@@ -102,9 +103,13 @@ public class UniversitySearchForm extends javax.swing.JDialog {
             return;
         }
 
-        University university = JsonHttpRequester.getUniversity(universityName);
-
-        if (university != null) {
+        //Polla panepisthmiaaaaaaa
+        List<String> universities = JsonHttpRequester.getUniversities(universityName);
+        if (universities!= null && universities.size()>1) {
+            UniversitiesForm.showUniversitiesForm(universities);
+        }
+        else if (universities.size() == 1){
+            University university = JsonHttpRequester.getUniversity(universityName);
             UniversityForm.showMealForm(university);
 
         } else {
