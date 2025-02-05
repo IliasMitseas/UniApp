@@ -9,17 +9,11 @@ package ilias.uniapp.Forms;
 //import static com.eap.pli24.mealsapp.db.Connector.deleteMealView;
 //import static com.eap.pli24.mealsapp.db.Connector.insertMealView;
 
+import ilias.uniapp.db.Connector;
 import ilias.uniapp.db.University;
 import ilias.uniapp.json.JsonHttpRequester;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-
 import javax.swing.JOptionPane;
+
 
 //forma emfanisis stixion panepistimiou
 public class UniversityForm extends javax.swing.JDialog {
@@ -44,6 +38,8 @@ public class UniversityForm extends javax.swing.JDialog {
         setModal(true);
 
         University uni = JsonHttpRequester.getUniversity(u.getName());
+        //Connector.insertUniversity(uni);
+        //Connector.saveMeal(uni);
 
         //University universityInDB = Connector.getMeal(u.getId());
         //universityExistsInDB = universityInDB != null;
@@ -55,9 +51,7 @@ public class UniversityForm extends javax.swing.JDialog {
         //emanizo ta stoxia stin othoni
         displayUniversityData(u);
 
-
-        //diortono tin prosvasi sta koumpia
-        //checkButtonsEnabled();
+        checkButtonsEnabled();
     }
 
     //methodos gia na emfanizei ta stoixeia geumatos stin forma
@@ -74,17 +68,17 @@ public class UniversityForm extends javax.swing.JDialog {
 
     //analoga tou an ipirxe stin basia naoigoklin ta katallila plhktra gia
     //dieukolinsi xristi se energeies
-//    private void checkButtonsEnabled() {
-//        cmdInsert.setEnabled(!universityExistsInDB);
-//        cmdUpdate.setEnabled(universityExistsInDB);
-//        cmdDelete.setEnabled(universityExistsInDB);
-//    }
-
-    private void setButtonsDisabled() {
-        cmdInsert.setEnabled(false);
-        cmdUpdate.setEnabled(false);
-        cmdDelete.setEnabled(false);
+    private void checkButtonsEnabled() {
+        cmdInsert.setEnabled(true);
+        //cmdUpdate.setEnabled(universityExistsInDB);
+        //cmdDelete.setEnabled(universityExistsInDB);
     }
+
+//    private void setButtonsDisabled() {
+//        cmdInsert.setEnabled(false);
+//        cmdUpdate.setEnabled(false);
+//        cmdDelete.setEnabled(false);
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -138,7 +132,7 @@ public class UniversityForm extends javax.swing.JDialog {
         cmdInsert.setText("Αποθήκευση δεδομένων Πανεπιστημίου στη βάση");
         cmdInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //cmdInsertActionPerformed(evt);
+                cmdInsertActionPerformed(evt);
             }
         });
 
@@ -250,6 +244,25 @@ public class UniversityForm extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUniversityAlphaCodeActionPerformed
 
+    //prosthesi neon stoixeion stin basi geumaton
+    private void cmdInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdInsertActionPerformed
+        //apothikeui stin basi ta stoixeia tou geumatos
+        u.setName(txtUniversityName.getText());
+        u.setDomain(txtUniversityDomain.getText());
+        u.setWebpage(txtUniversityWebPage.getText());
+        u.setAlphatwocode(txtUniversityAlphaCode.getText());
+        u.setCountry(txtUniversityCountry.getText());
+        u.setStateprovince(txtUniversityStateProvince.getText());
+
+        Connector.insertUniversity(u);
+        JOptionPane.showMessageDialog(this, "Τα δεδομένα αποθηκεύτηκαν επιτυχώς!", "Επιτυχία", JOptionPane.INFORMATION_MESSAGE);
+        //enimerose kai ta stoixeia ton views
+        //insertMealView(m);
+        //diorthose pia kumpia prepi na einai anoikta
+        //mealExistsInDB = true;
+        //checkButtonsEnabled();
+    }//GEN-LAST:event_cmdInsertActionPerformed
+
     //methodos gia emfanisi tis formas stin othoni
     public static void showUniversityForm(University university) {
         /* Set the Nimbus look and feel */
@@ -311,16 +324,7 @@ public class UniversityForm extends javax.swing.JDialog {
 
 
 
-//   //prosthesi neon stoixeion stin basi geumaton
-//    private void cmdInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdInsertActionPerformed
-//        //apothikeui stin basi ta stoixeia tou geumatos
-//        Connector.insertMeal(m);
-//        //enimerose kai ta stoixeia ton views
-//        insertMealView(m);
-//        //diorthose pia kumpia prepi na einai anoikta
-//        mealExistsInDB = true;
-//        checkButtonsEnabled();
-//    }//GEN-LAST:event_cmdInsertActionPerformed
+
 //
 //
 //    //enimerosi tisbasis me tis allages pou eginan apo ton xristi

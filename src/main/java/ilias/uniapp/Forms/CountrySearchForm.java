@@ -1,5 +1,4 @@
 package ilias.uniapp.Forms;
-import ilias.uniapp.db.University;
 import ilias.uniapp.json.JsonHttpRequester;
 
 import javax.swing.*;

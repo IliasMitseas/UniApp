@@ -1,10 +1,10 @@
 package ilias.uniapp.json;
-import ilias.uniapp.db.University;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import ilias.uniapp.db.University;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -60,15 +60,13 @@ public class JsonHttpRequester {
             JsonObject universityJson = jsonArray.get(0).getAsJsonObject(); // Παίρνουμε το πρώτο αποτέλεσμα
 
             String name = universityJson.get("name").getAsString();
-            String alphaTwoCode = universityJson.get("alpha_two_code").getAsString();
-            String country = universityJson.get("country").getAsString();
-            String stateProvince = universityJson.has("state-province") && !universityJson.get("state-province").isJsonNull()
-                    ? universityJson.get("state-province").getAsString()
-                    : "";
-
             // Παίρνουμε το πρώτο domain και την πρώτη ιστοσελίδα
             String domain = universityJson.getAsJsonArray("domains").get(0).getAsString();
             String webPage = universityJson.getAsJsonArray("web_pages").get(0).getAsString();
+            String alphaTwoCode = universityJson.get("alpha_two_code").getAsString();
+            String country = universityJson.get("country").getAsString();
+            String stateProvince = universityJson.has("state-province") && !universityJson.get("state-province").isJsonNull()
+                    ? universityJson.get("state-province").getAsString() : "";
 
             return new University(name, domain, webPage, alphaTwoCode, country, stateProvince);
         }

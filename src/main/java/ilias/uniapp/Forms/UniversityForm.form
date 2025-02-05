@@ -202,6 +202,9 @@
     <Component class="javax.swing.JTextField" name="txtUniversityName">
     </Component>
     <Component class="javax.swing.JTextField" name="txtUniversityCountry">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUniversityCountryActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtUniversityStateProvince">
     </Component>

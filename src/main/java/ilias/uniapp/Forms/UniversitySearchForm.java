@@ -2,7 +2,6 @@ package ilias.uniapp.Forms;
 import ilias.uniapp.db.University;
 import ilias.uniapp.json.JsonHttpRequester;
 
-import javax.swing.*;
 import java.util.List;
 
 //klasi gia anazitisi panepistimiou

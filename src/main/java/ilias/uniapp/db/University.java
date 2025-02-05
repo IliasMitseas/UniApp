@@ -38,22 +38,27 @@ public class University implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
+    
     @Basic(optional = false)
     @Column(name = "NAME")
     private String name;
+    
     @Basic(optional = false)
     @Column(name = "DOMAIN")
     private String domain;
+    
     @Basic(optional = false)
     @Column(name = "WEBPAGE")
     private String webpage;
+    
     @Basic(optional = false)
     @Column(name = "ALPHATWOCODE")
     private String alphatwocode;
+    
     @Basic(optional = false)
     @Column(name = "COUNTRY")
     private String country;
-    @Basic(optional = false)
+    
     @Column(name = "STATEPROVINCE")
     private String stateprovince;
 
@@ -69,9 +74,9 @@ public class University implements Serializable {
         this.name = name;
         this.domain = domain;
         this.webpage = webpage;
-        this.alphatwocode = alphatwocode;
         this.country = country;
-        this.stateprovince = stateprovince;
+        this.alphatwocode = alphatwocode;
+        
     }
 
     public University(String name, String domain, String webpage, String alphatwocode, String country, String stateprovince) {
