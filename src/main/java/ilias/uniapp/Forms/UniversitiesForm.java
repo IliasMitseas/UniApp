@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package ilias.uniapp.Forms;
 
 import ilias.uniapp.db.University;
@@ -11,16 +7,10 @@ import javax.swing.*;
 import java.util.List;
 
 
-
 public class UniversitiesForm extends javax.swing.JDialog {
-
-    //metabliti pou periexei ta stoixeia kai tis allages otan xrieazetai
-    private List <String> u;
-
 
     public UniversitiesForm(List universityParam) {
         initComponents();
-
 
         jListUniversities.setEnabled(false);
         jListUniversity.setEnabled(false);

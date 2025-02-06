@@ -105,11 +105,13 @@ public class UniversitySearchForm extends javax.swing.JDialog {
             return;
         }
 
-        //Polla panepisthmiaaaaaaa
         List<String> universities = JsonHttpRequester.getUniversities(universityName);
+
+        //An exw panw apo ena panepistimia sxetika me to keyword emfanise th lista
         if (universities!= null && universities.size()>1) {
             UniversitiesForm.showUniversitiesForm(universities);
         }
+        //Alliws emfanise th forma gia ena panepistimio
         else if (universities.size() == 1){
             University university = JsonHttpRequester.getUniversity(universityName);
             UniversityForm.showUniversityForm(university);

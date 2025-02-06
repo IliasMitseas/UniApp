@@ -1,9 +1,7 @@
 package ilias.uniapp.db;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import java.util.List;
 
 import static ilias.uniapp.UniApp.getEM;
 
@@ -25,37 +23,14 @@ public class Connector {
         em.getTransaction().commit();
     }
 
-    public static void saveUniversity(University university) {
+    public static University getUniversityByName(String universityName) {
         EntityManager em = getEM();
-        em.getTransaction().begin();
-        
-        em.createNativeQuery("INSERT INTO university (name, domain, webpage, alphatwocode, country, stateprovince) VALUES (?,?,?,?,?,?)")
-        .setParameter(1, university.getName())
-        .setParameter(2, university.getDomain())
-        .setParameter(3, university.getWebpage())
-        .setParameter(4, university.getAlphatwocode())
-        .setParameter(5, university.getCountry())
-        .setParameter(6, university.getStateprovince())
-        .executeUpdate();
+        University university = null;
 
-        em.getTransaction().commit();
-    }
-
-    public static University getUniversity(String universityId) {
-        EntityManager em = getEM();
-        var qb = em.getCriteriaBuilder();
-        var query = qb.createQuery(University.class);
-        var root = query.from(University.class);
-        query.select(root);
-        query.where(qb.equal(root.get("id"), universityId));
-
-        List<University> universities = em.createQuery(query).getResultList();
-
-        if (universities.isEmpty()) {
-            return null;
-        }
-
-        return universities.get(0);
+        Query findUniByName = em.createNamedQuery("University.findByName", University.class);
+        findUniByName.setParameter("name", universityName);
+        university = (University) findUniByName.getSingleResult();  // Αν δεν υπάρχει, πετάει
+        return university;
     }
 
     public static University getUniversityById(Integer universityId) {
@@ -66,22 +41,6 @@ public class Connector {
         University university = (University) findUniById.getSingleResult();
         return university;
     }
-
-
-    public static University getUniversityByName(String universityName) {
-        EntityManager em = getEM();
-        University university = null;
-
-        Query findUniByName = em.createNamedQuery("University.findByName", University.class);
-        findUniByName.setParameter("name", universityName);
-        university = (University) findUniByName.getSingleResult();  // Αν δεν υπάρχει, πετάει
-
-        return university;
-
-    }
-
-
-
 
 
     public static void deleteUniversity(University university) {

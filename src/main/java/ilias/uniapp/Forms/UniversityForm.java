@@ -1,20 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package ilias.uniapp.Forms;
-
-
-//import com.eap.pli24.mealsapp.db.Connector;
-//import static com.eap.pli24.mealsapp.db.Connector.deleteMealView;
-//import static com.eap.pli24.mealsapp.db.Connector.insertMealView;
 
 import ilias.uniapp.db.Connector;
 import ilias.uniapp.db.University;
 import ilias.uniapp.json.JsonHttpRequester;
 
 import javax.persistence.NoResultException;
-import javax.persistence.NonUniqueResultException;
 import javax.swing.JOptionPane;
 
 
@@ -23,9 +13,8 @@ public class UniversityForm extends javax.swing.JDialog {
 
     //metabliti pou periexei ta stoixeia kai tis allages otan xrieazetai
     private University u;
-    boolean universityExistsInDB = false; //metabliti gia anigma pliktron formas
 
-    //parametro to panepistimio gia na mporei na emfanisei ta stoixeia tou
+    //pernaw sa parametro to panepistimio gia na mporei na emfanisei ta stoixeia tou
     public UniversityForm(University universityParam) {
         //dieuthetisi ton GUI stixion
         initComponents();
@@ -38,11 +27,18 @@ public class UniversityForm extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         setModal(true);
 
-        University uni = JsonHttpRequester.getUniversity(u.getName());
 
-
-        //emanizo ta stoxia stin othoni
-        displayUniversityData(uni);
+        try {
+            University dbUniversity = Connector.getUniversityByName(u.getName());
+            if (dbUniversity != null){
+                this.u = dbUniversity;
+                displayUniversityData(dbUniversity);
+            }
+        }
+        //Αν πάρω Exception οτι δε βρέθηκε πανεπιστήμιο με αυτό το όνομα το γράφω στη βάση. Θεώρω ότι το όνομα είναι μοναδικό για κάθε πανεπιστήμιο
+        catch (NoResultException e){
+            displayUniversityData(universityParam);
+        }
 
         checkButtonsEnabled();
     }
@@ -64,13 +60,13 @@ public class UniversityForm extends javax.swing.JDialog {
     private void checkButtonsEnabled() {
         cmdInsert.setEnabled(true);
         //cmdUpdate.setEnabled(universityExistsInDB);
-        //cmdDelete.setEnabled(universityExistsInDB);
+        cmdDelete.setEnabled(true);
     }
 
     private void setButtonsDisabled() {
         cmdInsert.setEnabled(false);
-//        cmdUpdate.setEnabled(false);
-//        cmdDelete.setEnabled(false);
+        //cmdUpdate.setEnabled(false);
+        cmdDelete.setEnabled(false);
     }
 
     /**
@@ -139,7 +135,7 @@ public class UniversityForm extends javax.swing.JDialog {
         cmdDelete.setText("Διαγραφή δεδομένων πανεπιστημίου");
         cmdDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //cmdDeleteActionPerformed(evt);
+                cmdDeleteActionPerformed(evt);
             }
         });
 
@@ -260,18 +256,47 @@ public class UniversityForm extends javax.swing.JDialog {
         //Αν πάρω Exception οτι δε βρέθηκε πανεπιστήμιο με αυτό το όνομα το γράφω στη βάση. Θεώρω ότι το όνομα είναι μοναδικό για κάθε πανεπιστήμιο
         catch (NoResultException e){
             Connector.insertUniversity(u);
+            University dbUniversity = Connector.getUniversityByName(u.getName());
+            displayUniversityData(dbUniversity);
             JOptionPane.showMessageDialog(this, "Τα πανεπιστήμιο αποθηκεύτηκε στη βάση δεδομένων", "Επιτυχία", JOptionPane.INFORMATION_MESSAGE);
         }
 
-
-
-
-        //enimerose kai ta stoixeia ton views
-        //insertMealView(m);
-        //diorthose pia kumpia prepi na einai anoikta
-        //mealExistsInDB = true;
-        //checkButtonsEnabled();
     }//GEN-LAST:event_cmdInsertActionPerformed
+
+
+
+    //diagrafi geumatos apo tin basi
+    private void cmdDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdDeleteActionPerformed
+
+        int answer = JOptionPane.showConfirmDialog(this, "Να διαγραφεί το γεύμα;", "Απαιτείται επιβεβαίωση", JOptionPane.YES_NO_OPTION);
+
+        if (answer == JOptionPane.YES_OPTION) {
+            //diegrapse apo tin basi
+            try {
+                University dbUniversity = Connector.getUniversityByName(u.getName());
+                if (dbUniversity != null){
+                    Connector.deleteUniversity(dbUniversity);
+                    displayUniversityData(u);
+                }
+                JOptionPane.showMessageDialog(this, "Το γεύμα διαγράφηκε από τη βάση επιτυχώς!\n"
+                                + "Για να συνεχίσετε σε νέα αναζήτηση γεύματος\n"
+                                + "   κλείστε την οθόνη «Προβολή γεύματος»", "Επιτυχής διαγραφή γεύματος",
+                        JOptionPane.INFORMATION_MESSAGE);            }
+            //Αν πάρω Exception οτι δε βρέθηκε πανεπιστήμιο με αυτό το όνομα στη βάση δεν υπάρχει κάτι για να διαγράψω
+            catch (NoResultException e){
+                JOptionPane.showMessageDialog(this, "Τα πανεπιστήμιο δεν υπάρχει στη βάση δεδομένων για να διαγραφεί", "Αποτυχία", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        }
+        if (answer == JOptionPane.NO_OPTION) {
+            displayUniversityData(u);
+            JOptionPane.showMessageDialog(this,
+                    "Το γεύμα δεν διαγράφηκε!", "Διατήρηση γεύματος στη βάση δεδομένων",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_cmdDeleteActionPerformed
+
+
 
     //methodos gia emfanisi tis formas stin othoni
     public static void showUniversityForm(University university) {
@@ -331,12 +356,6 @@ public class UniversityForm extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 }
 
-
-
-
-
-//
-//
 //    //enimerosi tisbasis me tis allages pou eginan apo ton xristi
 //    private void cmdUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdUpdateActionPerformed
 //
@@ -360,38 +379,5 @@ public class UniversityForm extends javax.swing.JDialog {
 //        if (answer == JOptionPane.NO_OPTION) {
 //            displayMealData();
 //        }
-//        //diorthose pia kumpia prepi na einai anoikta
-//
 //        checkButtonsEnabled();
 //    }//GEN-LAST:event_cmdUpdateActionPerformed
-
-
-
-//diagrafi geumatos apo tin basi
-//    private void cmdDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdDeleteActionPerformed
-//
-//        int answer
-//                = JOptionPane.showConfirmDialog(this, "Να διαγραφεί το γεύμα;",
-//                        "Απαιτείται επιβεβαίωση", JOptionPane.YES_NO_OPTION);
-//
-//        if (answer == JOptionPane.YES_OPTION) {
-//            //diegrapse apo tin basi
-//            deleteMealView(m);
-//
-//            Connector.deleteMeal(m);
-//            mealExistsInDB = false;
-//            setButtonsDisabled();
-//            JOptionPane.showMessageDialog(this,
-//                    "Το γεύμα διαγράφηκε από τη βάση επιτυχώς!\n"
-//                    + "Για να συνεχίσετε σε νέα αναζήτηση γεύματος\n"
-//                    + "   κλείστε την οθόνη «Προβολή γεύματος»", "Επιτυχής διαγραφή γεύματος",
-//                    JOptionPane.INFORMATION_MESSAGE);
-//
-//        }
-//        if (answer == JOptionPane.NO_OPTION) {
-//            displayMealData();
-//            JOptionPane.showMessageDialog(this,
-//                    "Το γεύμα δεν διαγράφηκε!", "Διατήρηση γεύματος στη βάση δεδομένων",
-//                    JOptionPane.INFORMATION_MESSAGE);
-//        }
-//    }//GEN-LAST:event_cmdDeleteActionPerformed
