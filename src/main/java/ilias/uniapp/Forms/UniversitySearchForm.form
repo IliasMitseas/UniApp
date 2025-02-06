@@ -33,11 +33,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblError" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="lblUniversity" min="-2" pref="101" max="-2" attributes="0"/>
+                      <Component id="lblUniversity" min="-2" pref="123" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="txtUniversity" min="-2" pref="357" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtUniversity" min="-2" pref="370" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="cmdSearch" pref="115" max="32767" attributes="0"/>
+                      <Component id="cmdSearch" pref="94" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>

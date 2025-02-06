@@ -33,11 +33,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblError" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="lblCountry" min="-2" pref="98" max="-2" attributes="0"/>
+                      <Component id="lblCountry" pref="126" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtCountry" min="-2" pref="341" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="cmdSearch" pref="110" max="32767" attributes="0"/>
+                      <Component id="txtCountry" min="-2" pref="353" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="cmdSearch" min="-2" pref="115" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -48,12 +48,10 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="cmdSearch" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtCountry" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblCountry" min="-2" pref="57" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtCountry" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblCountry" min="-2" pref="57" max="-2" attributes="0"/>
+                  <Component id="cmdSearch" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblError" min="-2" pref="12" max="-2" attributes="0"/>

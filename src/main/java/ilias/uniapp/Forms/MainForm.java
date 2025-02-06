@@ -21,6 +21,7 @@ public class MainForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton2 = new javax.swing.JButton();
+        jButtonSearchCountry1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -30,21 +31,30 @@ public class MainForm extends javax.swing.JFrame {
 
         jButton2.setText("jButton2");
 
+        jButtonSearchCountry1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButtonSearchCountry1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ilias\\Desktop\\UniApp\\CountryNew.png")); // NOI18N
+        jButtonSearchCountry1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonSearchCountry1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSearchCountry1ActionPerformed(evt);
+            }
+        });
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Uni App");
 
-        jPanel1.setBackground(new java.awt.Color(255, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ilias\\Desktop\\UniApp\\5526527.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ilias\\Desktop\\UniApp\\DesktopImg.png")); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel1.setText("University App");
 
         jButtonSearchUniversity.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButtonSearchUniversity.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ilias\\Desktop\\UniApp\\search.png")); // NOI18N
-        jButtonSearchUniversity.setText("Search");
+        jButtonSearchUniversity.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ilias\\Desktop\\UniApp\\SearchNew.png")); // NOI18N
         jButtonSearchUniversity.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonSearchUniversity.setPreferredSize(new java.awt.Dimension(123, 49));
         jButtonSearchUniversity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSearchUniversityActionPerformed(evt);
@@ -52,8 +62,7 @@ public class MainForm extends javax.swing.JFrame {
         });
 
         jButtonSearchCountry.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButtonSearchCountry.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ilias\\Desktop\\UniApp\\search.png")); // NOI18N
-        jButtonSearchCountry.setText("Country");
+        jButtonSearchCountry.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ilias\\Desktop\\UniApp\\CountryNew.png")); // NOI18N
         jButtonSearchCountry.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonSearchCountry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,8 +71,7 @@ public class MainForm extends javax.swing.JFrame {
         });
 
         jButtonStatistics.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButtonStatistics.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ilias\\Desktop\\UniApp\\stats.png")); // NOI18N
-        jButtonStatistics.setText("Statistics");
+        jButtonStatistics.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ilias\\Desktop\\UniApp\\StatsNew.png")); // NOI18N
         jButtonStatistics.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonStatistics.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,15 +88,14 @@ public class MainForm extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButtonSearchUniversity, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonSearchCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonStatistics, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52))))
+                        .addComponent(jButtonSearchUniversity, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(jButtonSearchCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonStatistics, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(194, 194, 194)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -102,11 +109,11 @@ public class MainForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonSearchUniversity)
-                    .addComponent(jButtonSearchCountry)
-                    .addComponent(jButtonStatistics))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonSearchUniversity, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSearchCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonStatistics, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -123,10 +130,6 @@ public class MainForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonSearchUniversityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchUniversityActionPerformed
-        UniversitySearchForm.showUniversitySearchForm();
-    }//GEN-LAST:event_jButtonSearchUniversityActionPerformed
-
     private void jButtonSearchCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchCountryActionPerformed
         CountrySearchForm.showCountrySearchForm();
     }//GEN-LAST:event_jButtonSearchCountryActionPerformed
@@ -134,6 +137,14 @@ public class MainForm extends javax.swing.JFrame {
     private void jButtonStatisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStatisticsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonStatisticsActionPerformed
+
+    private void jButtonSearchCountry1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchCountry1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonSearchCountry1ActionPerformed
+
+    private void jButtonSearchUniversityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchUniversityActionPerformed
+        UniversitySearchForm.showUniversitySearchForm();
+    }//GEN-LAST:event_jButtonSearchUniversityActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,6 +184,7 @@ public class MainForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonSearchCountry;
+    private javax.swing.JButton jButtonSearchCountry1;
     private javax.swing.JButton jButtonSearchUniversity;
     private javax.swing.JButton jButtonStatistics;
     private javax.swing.JLabel jLabel1;

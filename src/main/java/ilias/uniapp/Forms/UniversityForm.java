@@ -12,6 +12,9 @@ package ilias.uniapp.Forms;
 import ilias.uniapp.db.Connector;
 import ilias.uniapp.db.University;
 import ilias.uniapp.json.JsonHttpRequester;
+
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.swing.JOptionPane;
 
 
@@ -20,8 +23,7 @@ public class UniversityForm extends javax.swing.JDialog {
 
     //metabliti pou periexei ta stoixeia kai tis allages otan xrieazetai
     private University u;
-
-    // boolean universityExistsInDB = false; //metabliti gia anigma pliktron formas
+    boolean universityExistsInDB = false; //metabliti gia anigma pliktron formas
 
     //parametro to panepistimio gia na mporei na emfanisei ta stoixeia tou
     public UniversityForm(University universityParam) {
@@ -31,25 +33,16 @@ public class UniversityForm extends javax.swing.JDialog {
         //perno ta stixia pou perasan apo alli forma se auti topika
         u = universityParam;
 
-
         //topotheto tin forma
         pack();
         setLocationRelativeTo(null);
         setModal(true);
 
         University uni = JsonHttpRequester.getUniversity(u.getName());
-        //Connector.insertUniversity(uni);
-        //Connector.saveMeal(uni);
 
-        //University universityInDB = Connector.getMeal(u.getId());
-        //universityExistsInDB = universityInDB != null;
-        //if (universityExistsInDB) {
-        //    this.u = universityInDB;
-        //    Connector.updateMealViewViews(u);
-        //}
 
         //emanizo ta stoxia stin othoni
-        displayUniversityData(u);
+        displayUniversityData(uni);
 
         checkButtonsEnabled();
     }
@@ -74,11 +67,11 @@ public class UniversityForm extends javax.swing.JDialog {
         //cmdDelete.setEnabled(universityExistsInDB);
     }
 
-//    private void setButtonsDisabled() {
-//        cmdInsert.setEnabled(false);
+    private void setButtonsDisabled() {
+        cmdInsert.setEnabled(false);
 //        cmdUpdate.setEnabled(false);
 //        cmdDelete.setEnabled(false);
-//    }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -254,8 +247,25 @@ public class UniversityForm extends javax.swing.JDialog {
         u.setCountry(txtUniversityCountry.getText());
         u.setStateprovince(txtUniversityStateProvince.getText());
 
-        Connector.insertUniversity(u);
-        JOptionPane.showMessageDialog(this, "Τα δεδομένα αποθηκεύτηκαν επιτυχώς!", "Επιτυχία", JOptionPane.INFORMATION_MESSAGE);
+
+        //Αν βρει το πανεπιστήμιο στη βάση τότε σημαίνει ότι ήδη υπάρχει.
+        try {
+            University dbUniversity = Connector.getUniversityByName(u.getName());
+            if (dbUniversity != null){
+                this.u = dbUniversity;
+                displayUniversityData(dbUniversity);
+            }
+            JOptionPane.showMessageDialog(this, "Τα πανεπιστήμιο είναι ήδη αποθηκευμένο στη βάση δεδομένων", "Αποτυχία", JOptionPane.INFORMATION_MESSAGE);
+        }
+        //Αν πάρω Exception οτι δε βρέθηκε πανεπιστήμιο με αυτό το όνομα το γράφω στη βάση. Θεώρω ότι το όνομα είναι μοναδικό για κάθε πανεπιστήμιο
+        catch (NoResultException e){
+            Connector.insertUniversity(u);
+            JOptionPane.showMessageDialog(this, "Τα πανεπιστήμιο αποθηκεύτηκε στη βάση δεδομένων", "Επιτυχία", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+
+
+
         //enimerose kai ta stoixeia ton views
         //insertMealView(m);
         //diorthose pia kumpia prepi na einai anoikta
