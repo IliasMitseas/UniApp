@@ -61,13 +61,13 @@ public class UniversityForm extends javax.swing.JDialog {
     //dieukolinsi xristi se energeies
     private void checkButtonsEnabled() {
         cmdInsert.setEnabled(true);
-        //cmdUpdate.setEnabled(universityExistsInDB);
+        cmdUpdate.setEnabled(true);
         cmdDelete.setEnabled(true);
     }
 
     private void setButtonsDisabled() {
         cmdInsert.setEnabled(false);
-        //cmdUpdate.setEnabled(false);
+        cmdUpdate.setEnabled(false);
         cmdDelete.setEnabled(false);
     }
 
@@ -96,6 +96,7 @@ public class UniversityForm extends javax.swing.JDialog {
         txtUniversityName = new javax.swing.JTextField();
         txtUniversityCountry = new javax.swing.JTextField();
         txtUniversityStateProvince = new javax.swing.JTextField();
+        jButtonSaveChanges = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Προβολή Πανεπιστημίου");
@@ -104,6 +105,7 @@ public class UniversityForm extends javax.swing.JDialog {
 
         lblUniversityName.setText("Όνομα Πανεπιστημίου:");
 
+        txtUniversityAlphaCode.setEditable(false);
         txtUniversityAlphaCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUniversityAlphaCodeActionPerformed(evt);
@@ -112,6 +114,7 @@ public class UniversityForm extends javax.swing.JDialog {
 
         lblUniversityDomain.setText("Domain:");
 
+        txtUniversityDomain.setEditable(false);
         txtUniversityDomain.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUniversityDomainActionPerformed(evt);
@@ -130,7 +133,7 @@ public class UniversityForm extends javax.swing.JDialog {
         cmdUpdate.setText("Επεξεργασία δεδομένων πανεπιστημίου");
         cmdUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //cmdUpdateActionPerformed(evt);
+                cmdUpdateActionPerformed(evt);
             }
         });
 
@@ -147,9 +150,25 @@ public class UniversityForm extends javax.swing.JDialog {
 
         lblUniversityAlphaTwoCode.setText("Alpha_two_code:");
 
+        txtUniversityWebPage.setEditable(false);
+
         lblUniversityCountry.setText("Country:");
 
         lblUniversityStateProvince.setText("State-province:");
+
+        txtUniversityName.setEditable(false);
+
+        txtUniversityCountry.setEditable(false);
+
+        txtUniversityStateProvince.setEditable(false);
+
+        jButtonSaveChanges.setText("Αποθήκευση Αλλαγων");
+        jButtonSaveChanges.setEnabled(false);
+        jButtonSaveChanges.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveChangesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -177,13 +196,11 @@ public class UniversityForm extends javax.swing.JDialog {
                                     .addComponent(txtUniversityCountry, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtUniversityStateProvince, javax.swing.GroupLayout.Alignment.LEADING)))
                             .addComponent(lblUniversityStateProvince))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cmdDelete, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmdInsert, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmdUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 855, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addContainerGap(38, Short.MAX_VALUE))))
+            .addComponent(jButtonSaveChanges, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(cmdUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
+            .addComponent(cmdDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(cmdInsert, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,12 +231,14 @@ public class UniversityForm extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUniversityStateProvince)
                     .addComponent(txtUniversityStateProvince, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
                 .addComponent(cmdInsert)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmdUpdate)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cmdDelete)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmdUpdate)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonSaveChanges)
                 .addContainerGap())
         );
 
@@ -262,7 +281,6 @@ public class UniversityForm extends javax.swing.JDialog {
             displayUniversityData(dbUniversity);
             JOptionPane.showMessageDialog(this, "Τα πανεπιστήμιο αποθηκεύτηκε στη βάση δεδομένων", "Επιτυχία", JOptionPane.INFORMATION_MESSAGE);
         }
-
     }//GEN-LAST:event_cmdInsertActionPerformed
 
 
@@ -298,7 +316,43 @@ public class UniversityForm extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_cmdDeleteActionPerformed
 
+    private void jButtonSaveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveChangesActionPerformed
+        // TODO add your handling code
+        // Ενημερώνουμε το αντικείμενο universityInDB με τα νέα στοιχεία από τα πεδία της φόρμας
+    universityInDB.setName(txtUniversityName.getText());
+    universityInDB.setDomain(txtUniversityDomain.getText());
+    universityInDB.setWebpage(txtUniversityWebPage.getText());
+    universityInDB.setAlphatwocode(txtUniversityAlphaCode.getText());
+    universityInDB.setCountry(txtUniversityCountry.getText());
+    universityInDB.setStateprovince(txtUniversityStateProvince.getText());
 
+    // Προσπαθούμε να αποθηκεύσουμε τις αλλαγές στη βάση δεδομένων
+    try {
+        Connector.updateUniversity(universityInDB);
+        JOptionPane.showMessageDialog(this, "Οι αλλαγές αποθηκεύτηκαν επιτυχώς!", "Επιτυχία", JOptionPane.INFORMATION_MESSAGE);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Αποτυχία αποθήκευσης αλλαγών: " + e.getMessage(), "Σφάλμα", JOptionPane.ERROR_MESSAGE);
+    }
+
+    // Κλείνουμε την φόρμα μετά την αποθήκευση
+    this.dispose();
+    }//GEN-LAST:event_jButtonSaveChangesActionPerformed
+
+
+   
+    private void cmdUpdateActionPerformed(java.awt.event.ActionEvent evt) {
+        txtUniversityName.setEditable(true);
+        txtUniversityDomain.setEditable(true);
+        txtUniversityCountry.setEditable(true);
+        txtUniversityAlphaCode.setEditable(true);
+        txtUniversityWebPage.setEditable(true);
+        txtUniversityStateProvince.setEditable(true);
+        jButtonSaveChanges.setEnabled(true);
+
+        JOptionPane.showMessageDialog(this,"Μπορείται να τροποποιήσεται τα δεδομενα του πανεπιστημίου", "",JOptionPane.INFORMATION_MESSAGE);
+
+        checkButtonsEnabled();
+    }
 
     //methodos gia emfanisi tis formas stin othoni
     public static void showUniversityForm(University university) {
@@ -343,6 +397,7 @@ public class UniversityForm extends javax.swing.JDialog {
     private javax.swing.JButton cmdDelete;
     private javax.swing.JButton cmdInsert;
     private javax.swing.JButton cmdUpdate;
+    private javax.swing.JButton jButtonSaveChanges;
     private javax.swing.JLabel jLabelUniversityId;
     private javax.swing.JLabel lblUniversityCountry;
     private javax.swing.JLabel lblUniversityDomain;
@@ -357,29 +412,3 @@ public class UniversityForm extends javax.swing.JDialog {
     private javax.swing.JTextField txtUniversityWebPage;
     // End of variables declaration//GEN-END:variables
 }
-
-//    //enimerosi tisbasis me tis allages pou eginan apo ton xristi
-//    private void cmdUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdUpdateActionPerformed
-//
-//        int answer
-//                = JOptionPane.showConfirmDialog(this, "Να αποθηκευθούν οι αλλαγές;",
-//                        "Απαιτείται επιβεβαίωση", JOptionPane.YES_NO_OPTION);
-//
-//        if (answer == JOptionPane.YES_OPTION) {
-//
-//            m.setName(txtUniversityAlphaCode.getText());
-//            m.setCategory(txtUniversityDomain.getText());
-//            m.setArea(txtMealArea.getText());
-//            m.setInstructions(txtMealInstructions.getText());
-//
-//            Connector.saveMeal(m);
-//            JOptionPane.showMessageDialog(this,
-//                    "Οι αλλαγές σας\n"
-//                    +"αποθηκεύτηκαν στη βάση επιτυχώς!\n", "Επιτυχής αλλαγή δεδομένων γεύματος",
-//                    JOptionPane.INFORMATION_MESSAGE);
-//        }
-//        if (answer == JOptionPane.NO_OPTION) {
-//            displayMealData();
-//        }
-//        checkButtonsEnabled();
-//    }

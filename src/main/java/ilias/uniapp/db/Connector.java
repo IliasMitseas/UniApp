@@ -10,7 +10,7 @@ public class Connector {
     public static void insertUniversity(University university) {
         EntityManager em = getEM();
         em.getTransaction().begin();
-        
+
         em.createNativeQuery("INSERT INTO university (name, domain, webpage, alphatwocode, country, stateprovince) VALUES (?,?,?,?,?,?)")
         .setParameter(1, university.getName())
         .setParameter(2, university.getDomain())
@@ -19,6 +19,23 @@ public class Connector {
         .setParameter(5, university.getCountry())
         .setParameter(6, university.getStateprovince())
         .executeUpdate();
+
+        em.getTransaction().commit();
+    }
+
+    public static void updateUniversity(University university) {
+        EntityManager em = getEM();
+        em.getTransaction().begin();
+
+        em.createNativeQuery("UPDATE university SET name = ?, domain = ?, webpage = ?, alphatwocode = ?, country = ?, stateprovince = ? WHERE name = ?")
+                .setParameter(1, university.getName())
+                .setParameter(2, university.getDomain())
+                .setParameter(3, university.getWebpage())
+                .setParameter(4, university.getAlphatwocode())
+                .setParameter(5, university.getCountry())
+                .setParameter(6, university.getStateprovince())
+                .setParameter(7, university.getName())
+                .executeUpdate();
 
         em.getTransaction().commit();
     }
@@ -49,6 +66,7 @@ public class Connector {
         em.remove(university);
         em.getTransaction().commit();
     }
+
 
 //    public static List<UniversityView> getMealViews() {
 //        EntityManager em = getEM();
