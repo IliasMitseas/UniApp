@@ -11,8 +11,9 @@ import javax.swing.JOptionPane;
 //forma emfanisis stixion panepistimiou
 public class UniversityForm extends javax.swing.JDialog {
 
-    //metabliti pou periexei ta stoixeia kai tis allages otan xrieazetai
-    private University u;
+    //global metablites pou h mia tha periexei ta stoixeia tou panepisthmioy apo to API kai h allh ta stoixeia apo th DB
+    private University universityInDB;
+    private University uniApi;
 
     //pernaw sa parametro to panepistimio gia na mporei na emfanisei ta stoixeia tou
     public UniversityForm(University universityParam) {
@@ -20,7 +21,8 @@ public class UniversityForm extends javax.swing.JDialog {
         initComponents();
 
         //perno ta stixia pou perasan apo alli forma se auti topika
-        u = universityParam;
+        universityInDB = universityParam;
+        uniApi = universityParam;
 
         //topotheto tin forma
         pack();
@@ -29,15 +31,15 @@ public class UniversityForm extends javax.swing.JDialog {
 
 
         try {
-            University dbUniversity = Connector.getUniversityByName(u.getName());
+            University dbUniversity = Connector.getUniversityByName(universityParam.getName());
             if (dbUniversity != null){
-                this.u = dbUniversity;
-                displayUniversityData(dbUniversity);
+                this.universityInDB = dbUniversity;
+                displayUniversityData(universityInDB);
             }
         }
         //Αν πάρω Exception οτι δε βρέθηκε πανεπιστήμιο με αυτό το όνομα το γράφω στη βάση. Θεώρω ότι το όνομα είναι μοναδικό για κάθε πανεπιστήμιο
         catch (NoResultException e){
-            displayUniversityData(universityParam);
+            displayUniversityData(uniApi);
         }
 
         checkButtonsEnabled();
@@ -236,27 +238,27 @@ public class UniversityForm extends javax.swing.JDialog {
     //prosthesi neon stoixeion stin basi geumaton
     private void cmdInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdInsertActionPerformed
         //apothikeui stin basi ta stoixeia tou geumatos
-        u.setName(txtUniversityName.getText());
-        u.setDomain(txtUniversityDomain.getText());
-        u.setWebpage(txtUniversityWebPage.getText());
-        u.setAlphatwocode(txtUniversityAlphaCode.getText());
-        u.setCountry(txtUniversityCountry.getText());
-        u.setStateprovince(txtUniversityStateProvince.getText());
+        universityInDB.setName(txtUniversityName.getText());
+        universityInDB.setDomain(txtUniversityDomain.getText());
+        universityInDB.setWebpage(txtUniversityWebPage.getText());
+        universityInDB.setAlphatwocode(txtUniversityAlphaCode.getText());
+        universityInDB.setCountry(txtUniversityCountry.getText());
+        universityInDB.setStateprovince(txtUniversityStateProvince.getText());
 
 
         //Αν βρει το πανεπιστήμιο στη βάση τότε σημαίνει ότι ήδη υπάρχει.
         try {
-            University dbUniversity = Connector.getUniversityByName(u.getName());
+            University dbUniversity = Connector.getUniversityByName(universityInDB.getName());
             if (dbUniversity != null){
-                this.u = dbUniversity;
-                displayUniversityData(dbUniversity);
+                this.universityInDB = dbUniversity;
+                displayUniversityData(universityInDB);
             }
             JOptionPane.showMessageDialog(this, "Τα πανεπιστήμιο είναι ήδη αποθηκευμένο στη βάση δεδομένων", "Αποτυχία", JOptionPane.INFORMATION_MESSAGE);
         }
         //Αν πάρω Exception οτι δε βρέθηκε πανεπιστήμιο με αυτό το όνομα το γράφω στη βάση. Θεώρω ότι το όνομα είναι μοναδικό για κάθε πανεπιστήμιο
         catch (NoResultException e){
-            Connector.insertUniversity(u);
-            University dbUniversity = Connector.getUniversityByName(u.getName());
+            Connector.insertUniversity(universityInDB);
+            University dbUniversity = Connector.getUniversityByName(universityInDB.getName());
             displayUniversityData(dbUniversity);
             JOptionPane.showMessageDialog(this, "Τα πανεπιστήμιο αποθηκεύτηκε στη βάση δεδομένων", "Επιτυχία", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -273,10 +275,10 @@ public class UniversityForm extends javax.swing.JDialog {
         if (answer == JOptionPane.YES_OPTION) {
             //diegrapse apo tin basi
             try {
-                University dbUniversity = Connector.getUniversityByName(u.getName());
+                University dbUniversity = Connector.getUniversityByName(universityInDB.getName());
                 if (dbUniversity != null){
                     Connector.deleteUniversity(dbUniversity);
-                    displayUniversityData(u);
+                    displayUniversityData(uniApi);
                 }
                 JOptionPane.showMessageDialog(this, "Το γεύμα διαγράφηκε από τη βάση επιτυχώς!\n"
                                 + "Για να συνεχίσετε σε νέα αναζήτηση γεύματος\n"
@@ -289,7 +291,7 @@ public class UniversityForm extends javax.swing.JDialog {
 
         }
         if (answer == JOptionPane.NO_OPTION) {
-            displayUniversityData(u);
+            displayUniversityData(universityInDB);
             JOptionPane.showMessageDialog(this,
                     "Το γεύμα δεν διαγράφηκε!", "Διατήρηση γεύματος στη βάση δεδομένων",
                     JOptionPane.INFORMATION_MESSAGE);
@@ -380,4 +382,4 @@ public class UniversityForm extends javax.swing.JDialog {
 //            displayMealData();
 //        }
 //        checkButtonsEnabled();
-//    }//GEN-LAST:event_cmdUpdateActionPerformed
+//    }
