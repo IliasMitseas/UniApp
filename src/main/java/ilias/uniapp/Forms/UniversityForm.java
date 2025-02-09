@@ -15,6 +15,8 @@ public class UniversityForm extends javax.swing.JDialog {
     private University universityInDB;
     private University uniApi;
 
+    private boolean universityExistsInDB = false;
+
     //pernaw sa parametro to panepistimio gia na mporei na emfanisei ta stoixeia tou
     public UniversityForm(University universityParam) {
         //dieuthetisi ton GUI stixion
@@ -33,6 +35,7 @@ public class UniversityForm extends javax.swing.JDialog {
         try {
             University dbUniversity = Connector.getUniversityByName(universityParam.getName());
             if (dbUniversity != null){
+                universityExistsInDB = true;
                 this.universityInDB = dbUniversity;
                 displayUniversityData(universityInDB);
             }
@@ -55,6 +58,10 @@ public class UniversityForm extends javax.swing.JDialog {
         txtUniversityAlphaCode.setText(u.getAlphatwocode());
         txtUniversityCountry.setText(u.getCountry());
         txtUniversityStateProvince.setText(u.getStateprovince());
+        txtUniversityContactInfos.setText(u.getContact());
+        txtUniversityDescription.setText(u.getDescription());
+        u.addViews();
+        Connector.insertUniversityViews(u);
     }
 
     //analoga tou an ipirxe stin basia naoigoklin ta katallila plhktra gia
@@ -65,11 +72,6 @@ public class UniversityForm extends javax.swing.JDialog {
         cmdDelete.setEnabled(true);
     }
 
-    private void setButtonsDisabled() {
-        cmdInsert.setEnabled(false);
-        cmdUpdate.setEnabled(false);
-        cmdDelete.setEnabled(false);
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -97,6 +99,10 @@ public class UniversityForm extends javax.swing.JDialog {
         txtUniversityCountry = new javax.swing.JTextField();
         txtUniversityStateProvince = new javax.swing.JTextField();
         jButtonSaveChanges = new javax.swing.JButton();
+        lblUniversityContactInfos = new javax.swing.JLabel();
+        txtUniversityContactInfos = new javax.swing.JTextField();
+        lblUniversityDescription = new javax.swing.JLabel();
+        txtUniversityDescription = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Προβολή Πανεπιστημίου");
@@ -106,20 +112,10 @@ public class UniversityForm extends javax.swing.JDialog {
         lblUniversityName.setText("Όνομα Πανεπιστημίου:");
 
         txtUniversityAlphaCode.setEditable(false);
-        txtUniversityAlphaCode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUniversityAlphaCodeActionPerformed(evt);
-            }
-        });
 
         lblUniversityDomain.setText("Domain:");
 
         txtUniversityDomain.setEditable(false);
-        txtUniversityDomain.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUniversityDomainActionPerformed(evt);
-            }
-        });
 
         lblUniversityWebPage.setText("Web_Page:");
 
@@ -170,10 +166,22 @@ public class UniversityForm extends javax.swing.JDialog {
             }
         });
 
+        lblUniversityContactInfos.setText("Contact infos:");
+
+        txtUniversityContactInfos.setEditable(false);
+
+        lblUniversityDescription.setText("Description:");
+
+        txtUniversityDescription.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButtonSaveChanges, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(cmdUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
+            .addComponent(cmdDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(cmdInsert, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,13 +202,16 @@ public class UniversityForm extends javax.swing.JDialog {
                                     .addComponent(txtUniversityWebPage, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtUniversityAlphaCode, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtUniversityCountry, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtUniversityStateProvince, javax.swing.GroupLayout.Alignment.LEADING)))
+                                    .addComponent(txtUniversityStateProvince, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtUniversityContactInfos, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtUniversityDescription, javax.swing.GroupLayout.Alignment.LEADING)))
                             .addComponent(lblUniversityStateProvince))
-                        .addContainerGap(38, Short.MAX_VALUE))))
-            .addComponent(jButtonSaveChanges, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(cmdUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
-            .addComponent(cmdDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(cmdInsert, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
+                        .addContainerGap(38, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblUniversityContactInfos)
+                            .addComponent(lblUniversityDescription))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,7 +242,15 @@ public class UniversityForm extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUniversityStateProvince)
                     .addComponent(txtUniversityStateProvince, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblUniversityContactInfos)
+                    .addComponent(txtUniversityContactInfos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblUniversityDescription)
+                    .addComponent(txtUniversityDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
                 .addComponent(cmdInsert)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmdDelete)
@@ -246,14 +265,6 @@ public class UniversityForm extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void txtUniversityDomainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUniversityDomainActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUniversityDomainActionPerformed
-
-    private void txtUniversityAlphaCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUniversityAlphaCodeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUniversityAlphaCodeActionPerformed
-
     //prosthesi neon stoixeion stin basi geumaton
     private void cmdInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdInsertActionPerformed
         //apothikeui stin basi ta stoixeia tou geumatos
@@ -263,7 +274,8 @@ public class UniversityForm extends javax.swing.JDialog {
         universityInDB.setAlphatwocode(txtUniversityAlphaCode.getText());
         universityInDB.setCountry(txtUniversityCountry.getText());
         universityInDB.setStateprovince(txtUniversityStateProvince.getText());
-
+        universityInDB.setContact(txtUniversityContactInfos.getText());
+        universityInDB.setDescription(txtUniversityDescription.getText());
 
         //Αν βρει το πανεπιστήμιο στη βάση τότε σημαίνει ότι ήδη υπάρχει.
         try {
@@ -282,7 +294,6 @@ public class UniversityForm extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Τα πανεπιστήμιο αποθηκεύτηκε στη βάση δεδομένων", "Επιτυχία", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_cmdInsertActionPerformed
-
 
 
     //diagrafi geumatos apo tin basi
@@ -325,6 +336,9 @@ public class UniversityForm extends javax.swing.JDialog {
     universityInDB.setAlphatwocode(txtUniversityAlphaCode.getText());
     universityInDB.setCountry(txtUniversityCountry.getText());
     universityInDB.setStateprovince(txtUniversityStateProvince.getText());
+    universityInDB.setContact(txtUniversityContactInfos.getText());
+    universityInDB.setDescription(txtUniversityDescription.getText());
+
 
     // Προσπαθούμε να αποθηκεύσουμε τις αλλαγές στη βάση δεδομένων
     try {
@@ -347,7 +361,15 @@ public class UniversityForm extends javax.swing.JDialog {
         txtUniversityAlphaCode.setEditable(true);
         txtUniversityWebPage.setEditable(true);
         txtUniversityStateProvince.setEditable(true);
-        jButtonSaveChanges.setEnabled(true);
+        txtUniversityContactInfos.setEditable(true);
+        txtUniversityDescription.setEditable(true);
+
+        if (universityExistsInDB){
+            jButtonSaveChanges.setEnabled(true);
+        }
+        else {
+            jButtonSaveChanges.setEnabled(false);
+        }
 
         JOptionPane.showMessageDialog(this,"Μπορείται να τροποποιήσεται τα δεδομενα του πανεπιστημίου", "",JOptionPane.INFORMATION_MESSAGE);
 
@@ -399,13 +421,17 @@ public class UniversityForm extends javax.swing.JDialog {
     private javax.swing.JButton cmdUpdate;
     private javax.swing.JButton jButtonSaveChanges;
     private javax.swing.JLabel jLabelUniversityId;
+    private javax.swing.JLabel lblUniversityContactInfos;
     private javax.swing.JLabel lblUniversityCountry;
+    private javax.swing.JLabel lblUniversityDescription;
     private javax.swing.JLabel lblUniversityDomain;
     private javax.swing.JLabel lblUniversityName;
     private javax.swing.JLabel lblUniversityStateProvince;
     private javax.swing.JLabel lblUniversityWebPage;
     private javax.swing.JTextField txtUniversityAlphaCode;
+    private javax.swing.JTextField txtUniversityContactInfos;
     private javax.swing.JTextField txtUniversityCountry;
+    private javax.swing.JTextField txtUniversityDescription;
     private javax.swing.JTextField txtUniversityDomain;
     private javax.swing.JTextField txtUniversityName;
     private javax.swing.JTextField txtUniversityStateProvince;

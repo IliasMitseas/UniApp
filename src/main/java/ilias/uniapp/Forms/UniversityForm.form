@@ -28,7 +28,11 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Component id="jButtonSaveChanges" alignment="0" max="32767" attributes="0"/>
+          <Component id="cmdUpdate" alignment="0" pref="867" max="32767" attributes="0"/>
+          <Component id="cmdDelete" alignment="0" max="32767" attributes="0"/>
+          <Component id="cmdInsert" alignment="0" pref="867" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabelUniversityId" max="32767" attributes="0"/>
@@ -50,18 +54,23 @@
                                   <Component id="txtUniversityAlphaCode" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtUniversityCountry" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtUniversityStateProvince" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtUniversityContactInfos" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtUniversityDescription" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="lblUniversityStateProvince" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="38" max="32767" attributes="0"/>
                   </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblUniversityContactInfos" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblUniversityDescription" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
-          <Component id="jButtonSaveChanges" alignment="0" max="32767" attributes="0"/>
-          <Component id="cmdUpdate" alignment="0" pref="867" max="32767" attributes="0"/>
-          <Component id="cmdDelete" alignment="0" max="32767" attributes="0"/>
-          <Component id="cmdInsert" alignment="0" pref="867" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -100,7 +109,17 @@
                   <Component id="lblUniversityStateProvince" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtUniversityStateProvince" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="227" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblUniversityContactInfos" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtUniversityContactInfos" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblUniversityDescription" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtUniversityDescription" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="159" max="32767" attributes="0"/>
               <Component id="cmdInsert" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="cmdDelete" min="-2" max="-2" attributes="0"/>
@@ -123,9 +142,6 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUniversityAlphaCodeActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblUniversityDomain">
       <Properties>
@@ -136,9 +152,6 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUniversityDomainActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblUniversityWebPage">
       <Properties>
@@ -215,9 +228,6 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUniversityCountryActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtUniversityStateProvince">
       <Properties>
@@ -232,6 +242,26 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSaveChangesActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblUniversityContactInfos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Contact infos:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtUniversityContactInfos">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblUniversityDescription">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Description:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtUniversityDescription">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

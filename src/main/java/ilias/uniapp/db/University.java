@@ -62,6 +62,19 @@ public class University implements Serializable {
     @Column(name = "STATEPROVINCE")
     private String stateprovince;
 
+    @Column(name = "DESCRIPTION")
+    private String description;
+
+    @Column(name = "CONTACT")
+    private String contact;
+
+    @Column(name = "COMMENTS")
+    private String comments;
+
+    @Column(name = "UNIVERSITYVIEWS")
+    private Integer universityviews;
+
+
     public University() {
     }
 
@@ -76,7 +89,7 @@ public class University implements Serializable {
         this.webpage = webpage;
         this.country = country;
         this.alphatwocode = alphatwocode;
-        
+        this.stateprovince = stateprovince;
     }
 
     public University(String name, String domain, String webpage, String alphatwocode, String country, String stateprovince) {
@@ -86,6 +99,7 @@ public class University implements Serializable {
         this.alphatwocode = alphatwocode;
         this.country = country;
         this.stateprovince = stateprovince;
+        this.universityviews = 0;
     }
 
     public Integer getId() {
@@ -142,6 +156,43 @@ public class University implements Serializable {
 
     public void setStateprovince(String stateprovince) {
         this.stateprovince = stateprovince;
+    }
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public Integer getUniversityviews() {
+        return universityviews;
+    }
+
+    public void setUniversityviews(Integer universityviews) {
+        this.universityviews = universityviews;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public void addViews(){
+        this.universityviews += 1;
     }
 
     @Override
