@@ -31,11 +31,7 @@ public class MainForm extends javax.swing.JFrame {
         jButtonSearchCountry1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jButtonSearchCountry1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ilias\\Desktop\\UniApp\\CountryNew.png")); // NOI18N
         jButtonSearchCountry1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButtonSearchCountry1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSearchCountry1ActionPerformed(evt);
-            }
-        });
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Uni App");
@@ -132,12 +128,9 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSearchCountryActionPerformed
 
     private void jButtonStatisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStatisticsActionPerformed
-        // TODO add your handling code here:
+        UniversityStatsForm.showUniversitiesStatsForm();
     }//GEN-LAST:event_jButtonStatisticsActionPerformed
 
-    private void jButtonSearchCountry1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchCountry1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonSearchCountry1ActionPerformed
 
     private void jButtonSearchUniversityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchUniversityActionPerformed
         UniversitySearchForm.showUniversitySearchForm();

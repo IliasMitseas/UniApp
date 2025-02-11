@@ -3,6 +3,8 @@ package ilias.uniapp.db;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import java.util.List;
+
 import static ilias.uniapp.UniApp.getEM;
 
 public class Connector {
@@ -67,5 +69,14 @@ public class Connector {
         em.getTransaction().begin();
         em.remove(university);
         em.getTransaction().commit();
+    }
+
+
+    public static List<University> getUniversities(){
+        EntityManager entityManager = getEM();
+
+        Query findAllUniversities = entityManager.createNamedQuery("University.findAll", University.class);
+        return findAllUniversities.getResultList();
+
     }
 }
