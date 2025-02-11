@@ -2,7 +2,6 @@ package ilias.uniapp.Forms;
 
 import ilias.uniapp.db.Connector;
 import ilias.uniapp.db.University;
-import ilias.uniapp.json.JsonHttpRequester;
 
 import javax.persistence.NoResultException;
 import javax.swing.JOptionPane;
@@ -16,6 +15,7 @@ public class UniversityForm extends javax.swing.JDialog {
     private University uniApi;
 
     private boolean universityExistsInDB = false;
+
 
     //pernaw sa parametro to panepistimio gia na mporei na emfanisei ta stoixeia tou
     public UniversityForm(University universityParam) {
@@ -72,6 +72,155 @@ public class UniversityForm extends javax.swing.JDialog {
         cmdDelete.setEnabled(true);
     }
 
+    //prosthesi neon stoixeion stin basi geumaton
+    private void cmdInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdInsertActionPerformed
+        //apothikeui stin basi ta stoixeia tou geumatos
+        universityInDB.setName(txtUniversityName.getText());
+        universityInDB.setDomain(txtUniversityDomain.getText());
+        universityInDB.setWebpage(txtUniversityWebPage.getText());
+        universityInDB.setAlphatwocode(txtUniversityAlphaCode.getText());
+        universityInDB.setCountry(txtUniversityCountry.getText());
+        universityInDB.setStateprovince(txtUniversityStateProvince.getText());
+        universityInDB.setContact(txtUniversityContactInfos.getText());
+        universityInDB.setDescription(txtUniversityDescription.getText());
+
+        //Αν βρει το πανεπιστήμιο στη βάση τότε σημαίνει ότι ήδη υπάρχει.
+        try {
+            University dbUniversity = Connector.getUniversityByName(universityInDB.getName());
+            if (dbUniversity != null){
+                this.universityInDB = dbUniversity;
+                displayUniversityData(universityInDB);
+            }
+            JOptionPane.showMessageDialog(this, "Τα πανεπιστήμιο είναι ήδη αποθηκευμένο στη βάση δεδομένων", "Αποτυχία", JOptionPane.INFORMATION_MESSAGE);
+        }
+        //Αν πάρω Exception οτι δε βρέθηκε πανεπιστήμιο με αυτό το όνομα το γράφω στη βάση. Θεώρω ότι το όνομα είναι μοναδικό για κάθε πανεπιστήμιο
+        catch (NoResultException e){
+            Connector.insertUniversity(universityInDB);
+            University dbUniversity = Connector.getUniversityByName(universityInDB.getName());
+            displayUniversityData(dbUniversity);
+            JOptionPane.showMessageDialog(this, "Τα πανεπιστήμιο αποθηκεύτηκε στη βάση δεδομένων", "Επιτυχία", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_cmdInsertActionPerformed
+
+
+
+
+    //diagrafi geumatos apo tin basi
+    private void cmdDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdDeleteActionPerformed
+
+        int answer = JOptionPane.showConfirmDialog(this, "Να διαγραφεί το γεύμα;", "Απαιτείται επιβεβαίωση", JOptionPane.YES_NO_OPTION);
+
+        if (answer == JOptionPane.YES_OPTION) {
+            //diegrapse apo tin basi
+            try {
+                University dbUniversity = Connector.getUniversityByName(universityInDB.getName());
+                if (dbUniversity != null){
+                    Connector.deleteUniversity(dbUniversity);
+                    displayUniversityData(uniApi);
+                }
+                JOptionPane.showMessageDialog(this, "Το γεύμα διαγράφηκε από τη βάση επιτυχώς!\n"
+                                + "Για να συνεχίσετε σε νέα αναζήτηση γεύματος\n"
+                                + "   κλείστε την οθόνη «Προβολή γεύματος»", "Επιτυχής διαγραφή γεύματος",
+                        JOptionPane.INFORMATION_MESSAGE);            }
+            //Αν πάρω Exception οτι δε βρέθηκε πανεπιστήμιο με αυτό το όνομα στη βάση δεν υπάρχει κάτι για να διαγράψω
+            catch (NoResultException e){
+                JOptionPane.showMessageDialog(this, "Τα πανεπιστήμιο δεν υπάρχει στη βάση δεδομένων για να διαγραφεί", "Αποτυχία", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        }
+        if (answer == JOptionPane.NO_OPTION) {
+            displayUniversityData(universityInDB);
+            JOptionPane.showMessageDialog(this,
+                    "Το γεύμα δεν διαγράφηκε!", "Διατήρηση γεύματος στη βάση δεδομένων",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_cmdDeleteActionPerformed
+
+
+    private void jButtonSaveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveChangesActionPerformed
+        // TODO add your handling code
+        // Ενημερώνουμε το αντικείμενο universityInDB με τα νέα στοιχεία από τα πεδία της φόρμας
+        universityInDB.setName(txtUniversityName.getText());
+        universityInDB.setDomain(txtUniversityDomain.getText());
+        universityInDB.setWebpage(txtUniversityWebPage.getText());
+        universityInDB.setAlphatwocode(txtUniversityAlphaCode.getText());
+        universityInDB.setCountry(txtUniversityCountry.getText());
+        universityInDB.setStateprovince(txtUniversityStateProvince.getText());
+        universityInDB.setContact(txtUniversityContactInfos.getText());
+        universityInDB.setDescription(txtUniversityDescription.getText());
+
+        // Προσπαθούμε να αποθηκεύσουμε τις αλλαγές στη βάση δεδομένων
+        try {
+            Connector.updateUniversity(universityInDB);
+            JOptionPane.showMessageDialog(this, "Οι αλλαγές αποθηκεύτηκαν επιτυχώς!", "Επιτυχία", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Αποτυχία αποθήκευσης αλλαγών: " + e.getMessage(), "Σφάλμα", JOptionPane.ERROR_MESSAGE);
+        }
+        // Κλείνουμε την φόρμα μετά την αποθήκευση
+        this.dispose();
+    }//GEN-LAST:event_jButtonSaveChangesActionPerformed
+
+
+    private void cmdUpdateActionPerformed(java.awt.event.ActionEvent evt) {
+        txtUniversityName.setEditable(true);
+        txtUniversityDomain.setEditable(true);
+        txtUniversityCountry.setEditable(true);
+        txtUniversityAlphaCode.setEditable(true);
+        txtUniversityWebPage.setEditable(true);
+        txtUniversityStateProvince.setEditable(true);
+        txtUniversityContactInfos.setEditable(true);
+        txtUniversityDescription.setEditable(true);
+
+        if (universityExistsInDB){
+            jButtonSaveChanges.setEnabled(true);
+        }
+        else {
+            jButtonSaveChanges.setEnabled(false);
+        }
+
+        JOptionPane.showMessageDialog(this,"Μπορείται να τροποποιήσεται τα δεδομενα του πανεπιστημίου", "",JOptionPane.INFORMATION_MESSAGE);
+
+        checkButtonsEnabled();
+    }
+
+    //methodos gia emfanisi tis formas stin othoni
+    public static void showUniversityForm(University university) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(UniversityForm.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(UniversityForm.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(UniversityForm.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(UniversityForm.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> {
+            new UniversityForm(university).setVisible(true);
+        });
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -263,157 +412,6 @@ public class UniversityForm extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-
-    //prosthesi neon stoixeion stin basi geumaton
-    private void cmdInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdInsertActionPerformed
-        //apothikeui stin basi ta stoixeia tou geumatos
-        universityInDB.setName(txtUniversityName.getText());
-        universityInDB.setDomain(txtUniversityDomain.getText());
-        universityInDB.setWebpage(txtUniversityWebPage.getText());
-        universityInDB.setAlphatwocode(txtUniversityAlphaCode.getText());
-        universityInDB.setCountry(txtUniversityCountry.getText());
-        universityInDB.setStateprovince(txtUniversityStateProvince.getText());
-        universityInDB.setContact(txtUniversityContactInfos.getText());
-        universityInDB.setDescription(txtUniversityDescription.getText());
-
-        //Αν βρει το πανεπιστήμιο στη βάση τότε σημαίνει ότι ήδη υπάρχει.
-        try {
-            University dbUniversity = Connector.getUniversityByName(universityInDB.getName());
-            if (dbUniversity != null){
-                this.universityInDB = dbUniversity;
-                displayUniversityData(universityInDB);
-            }
-            JOptionPane.showMessageDialog(this, "Τα πανεπιστήμιο είναι ήδη αποθηκευμένο στη βάση δεδομένων", "Αποτυχία", JOptionPane.INFORMATION_MESSAGE);
-        }
-        //Αν πάρω Exception οτι δε βρέθηκε πανεπιστήμιο με αυτό το όνομα το γράφω στη βάση. Θεώρω ότι το όνομα είναι μοναδικό για κάθε πανεπιστήμιο
-        catch (NoResultException e){
-            Connector.insertUniversity(universityInDB);
-            University dbUniversity = Connector.getUniversityByName(universityInDB.getName());
-            displayUniversityData(dbUniversity);
-            JOptionPane.showMessageDialog(this, "Τα πανεπιστήμιο αποθηκεύτηκε στη βάση δεδομένων", "Επιτυχία", JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_cmdInsertActionPerformed
-
-
-    //diagrafi geumatos apo tin basi
-    private void cmdDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdDeleteActionPerformed
-
-        int answer = JOptionPane.showConfirmDialog(this, "Να διαγραφεί το γεύμα;", "Απαιτείται επιβεβαίωση", JOptionPane.YES_NO_OPTION);
-
-        if (answer == JOptionPane.YES_OPTION) {
-            //diegrapse apo tin basi
-            try {
-                University dbUniversity = Connector.getUniversityByName(universityInDB.getName());
-                if (dbUniversity != null){
-                    Connector.deleteUniversity(dbUniversity);
-                    displayUniversityData(uniApi);
-                }
-                JOptionPane.showMessageDialog(this, "Το γεύμα διαγράφηκε από τη βάση επιτυχώς!\n"
-                                + "Για να συνεχίσετε σε νέα αναζήτηση γεύματος\n"
-                                + "   κλείστε την οθόνη «Προβολή γεύματος»", "Επιτυχής διαγραφή γεύματος",
-                        JOptionPane.INFORMATION_MESSAGE);            }
-            //Αν πάρω Exception οτι δε βρέθηκε πανεπιστήμιο με αυτό το όνομα στη βάση δεν υπάρχει κάτι για να διαγράψω
-            catch (NoResultException e){
-                JOptionPane.showMessageDialog(this, "Τα πανεπιστήμιο δεν υπάρχει στη βάση δεδομένων για να διαγραφεί", "Αποτυχία", JOptionPane.INFORMATION_MESSAGE);
-            }
-
-        }
-        if (answer == JOptionPane.NO_OPTION) {
-            displayUniversityData(universityInDB);
-            JOptionPane.showMessageDialog(this,
-                    "Το γεύμα δεν διαγράφηκε!", "Διατήρηση γεύματος στη βάση δεδομένων",
-                    JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_cmdDeleteActionPerformed
-
-    private void jButtonSaveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveChangesActionPerformed
-        // TODO add your handling code
-        // Ενημερώνουμε το αντικείμενο universityInDB με τα νέα στοιχεία από τα πεδία της φόρμας
-    universityInDB.setName(txtUniversityName.getText());
-    universityInDB.setDomain(txtUniversityDomain.getText());
-    universityInDB.setWebpage(txtUniversityWebPage.getText());
-    universityInDB.setAlphatwocode(txtUniversityAlphaCode.getText());
-    universityInDB.setCountry(txtUniversityCountry.getText());
-    universityInDB.setStateprovince(txtUniversityStateProvince.getText());
-    universityInDB.setContact(txtUniversityContactInfos.getText());
-    universityInDB.setDescription(txtUniversityDescription.getText());
-
-
-    // Προσπαθούμε να αποθηκεύσουμε τις αλλαγές στη βάση δεδομένων
-    try {
-        Connector.updateUniversity(universityInDB);
-        JOptionPane.showMessageDialog(this, "Οι αλλαγές αποθηκεύτηκαν επιτυχώς!", "Επιτυχία", JOptionPane.INFORMATION_MESSAGE);
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Αποτυχία αποθήκευσης αλλαγών: " + e.getMessage(), "Σφάλμα", JOptionPane.ERROR_MESSAGE);
-    }
-
-    // Κλείνουμε την φόρμα μετά την αποθήκευση
-    this.dispose();
-    }//GEN-LAST:event_jButtonSaveChangesActionPerformed
-
-
-   
-    private void cmdUpdateActionPerformed(java.awt.event.ActionEvent evt) {
-        txtUniversityName.setEditable(true);
-        txtUniversityDomain.setEditable(true);
-        txtUniversityCountry.setEditable(true);
-        txtUniversityAlphaCode.setEditable(true);
-        txtUniversityWebPage.setEditable(true);
-        txtUniversityStateProvince.setEditable(true);
-        txtUniversityContactInfos.setEditable(true);
-        txtUniversityDescription.setEditable(true);
-
-        if (universityExistsInDB){
-            jButtonSaveChanges.setEnabled(true);
-        }
-        else {
-            jButtonSaveChanges.setEnabled(false);
-        }
-
-        JOptionPane.showMessageDialog(this,"Μπορείται να τροποποιήσεται τα δεδομενα του πανεπιστημίου", "",JOptionPane.INFORMATION_MESSAGE);
-
-        checkButtonsEnabled();
-    }
-
-    //methodos gia emfanisi tis formas stin othoni
-    public static void showUniversityForm(University university) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UniversityForm.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UniversityForm.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UniversityForm.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UniversityForm.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new UniversityForm(university).setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cmdDelete;

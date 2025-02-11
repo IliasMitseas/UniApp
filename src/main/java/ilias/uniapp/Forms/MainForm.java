@@ -3,9 +3,6 @@ package ilias.uniapp.Forms;
 
 public class MainForm extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MainForm
-     */
     public MainForm() {
         initComponents();
         pack();
@@ -171,9 +168,7 @@ public class MainForm extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainForm().setVisible(true);
