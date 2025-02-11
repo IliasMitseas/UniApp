@@ -13,7 +13,6 @@ public class UniversityForm extends javax.swing.JDialog {
     //global metablites pou h mia tha periexei ta stoixeia tou panepisthmioy apo to API kai h allh ta stoixeia apo th DB
     private University universityInDB;
     private University uniApi;
-
     private boolean universityExistsInDB = false;
 
 
@@ -32,6 +31,7 @@ public class UniversityForm extends javax.swing.JDialog {
         setModal(true);
 
 
+        //An to panepistimio uparxei sth DB tha paroousiasw to panepistimio ths vashs
         try {
             University dbUniversity = Connector.getUniversityByName(universityParam.getName());
             if (dbUniversity != null){
@@ -39,12 +39,10 @@ public class UniversityForm extends javax.swing.JDialog {
                 this.universityInDB = dbUniversity;
                 displayUniversityData(universityInDB);
             }
-        }
-        //Αν πάρω Exception οτι δε βρέθηκε πανεπιστήμιο με αυτό το όνομα το γράφω στη βάση. Θεώρω ότι το όνομα είναι μοναδικό για κάθε πανεπιστήμιο
+        }//an to panepistimio den uparxei sth db tha parousiasw to panepistimio tou API
         catch (NoResultException e){
             displayUniversityData(uniApi);
         }
-
         checkButtonsEnabled();
     }
 
@@ -64,8 +62,7 @@ public class UniversityForm extends javax.swing.JDialog {
         Connector.insertUniversityViews(u);
     }
 
-    //analoga tou an ipirxe stin basia naoigoklin ta katallila plhktra gia
-    //dieukolinsi xristi se energeies
+    //analoga tou an ipirxe stin basi anoigokleinw ta katallila plhktra
     private void checkButtonsEnabled() {
         cmdInsert.setEnabled(true);
         cmdUpdate.setEnabled(true);
@@ -93,7 +90,7 @@ public class UniversityForm extends javax.swing.JDialog {
             }
             JOptionPane.showMessageDialog(this, "Τα πανεπιστήμιο είναι ήδη αποθηκευμένο στη βάση δεδομένων", "Αποτυχία", JOptionPane.INFORMATION_MESSAGE);
         }
-        //Αν πάρω Exception οτι δε βρέθηκε πανεπιστήμιο με αυτό το όνομα το γράφω στη βάση. Θεώρω ότι το όνομα είναι μοναδικό για κάθε πανεπιστήμιο
+        //Αν πάρω Exception οτι δε βρέθηκε πανεπιστήμιο με αυτό το όνομα το γράφω στη βάση. Θεωρώ ότι το όνομα είναι μοναδικό για κάθε πανεπιστήμιο
         catch (NoResultException e){
             Connector.insertUniversity(universityInDB);
             University dbUniversity = Connector.getUniversityByName(universityInDB.getName());
@@ -101,8 +98,6 @@ public class UniversityForm extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Τα πανεπιστήμιο αποθηκεύτηκε στη βάση δεδομένων", "Επιτυχία", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_cmdInsertActionPerformed
-
-
 
 
     //diagrafi geumatos apo tin basi

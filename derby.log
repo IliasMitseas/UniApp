@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Tue Feb 11 10:54:03 EET 2025:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-0194-f437-292d-00000dd97680 
+Tue Feb 11 11:27:40 EET 2025:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-0194-f455-efe2-00000de7e110 
 on database directory C:\Derby\UniversityDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
 Loaded from file:/C:/Users/Ilias/.m2/repository/org/apache/derby/derby/10.16.1.1/derby-10.16.1.1.jar
 java.vendor=Oracle Corporation

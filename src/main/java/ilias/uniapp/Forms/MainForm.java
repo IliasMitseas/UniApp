@@ -17,8 +17,6 @@ public class MainForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
-        jButtonSearchCountry1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -26,15 +24,10 @@ public class MainForm extends javax.swing.JFrame {
         jButtonSearchCountry = new javax.swing.JButton();
         jButtonStatistics = new javax.swing.JButton();
 
-        jButton2.setText("jButton2");
-
-        jButtonSearchCountry1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButtonSearchCountry1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ilias\\Desktop\\UniApp\\CountryNew.png")); // NOI18N
-        jButtonSearchCountry1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Uni App");
+        setBounds(new java.awt.Rectangle(650, 160, 0, 0));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -170,9 +163,7 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonSearchCountry;
-    private javax.swing.JButton jButtonSearchCountry1;
     private javax.swing.JButton jButtonSearchUniversity;
     private javax.swing.JButton jButtonStatistics;
     private javax.swing.JLabel jLabel1;

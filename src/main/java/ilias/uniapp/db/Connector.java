@@ -2,9 +2,7 @@ package ilias.uniapp.db;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-
 import java.util.List;
-
 import static ilias.uniapp.UniApp.getEM;
 
 public class Connector {
@@ -38,6 +36,7 @@ public class Connector {
         em.getTransaction().commit();
     }
 
+    //I have a problem cocncerning an update by name.
     public static void updateUniversity(University university) {
         EntityManager em = getEM();
         em.getTransaction().begin();
