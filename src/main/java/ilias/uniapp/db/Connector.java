@@ -41,14 +41,16 @@ public class Connector {
         EntityManager em = getEM();
         em.getTransaction().begin();
 
-        em.createNativeQuery("UPDATE university SET name = ?, domain = ?, webpage = ?, alphatwocode = ?, country = ?, stateprovince = ? WHERE name = ?")
+        em.createNativeQuery("UPDATE university SET name = ?, domain = ?, webpage = ?, alphatwocode = ?, country = ?, stateprovince = ?, description = ?, contact = ? WHERE name = ?")
                 .setParameter(1, university.getName())
                 .setParameter(2, university.getDomain())
                 .setParameter(3, university.getWebpage())
                 .setParameter(4, university.getAlphatwocode())
                 .setParameter(5, university.getCountry())
                 .setParameter(6, university.getStateprovince())
-                .setParameter(7, university.getName())
+                .setParameter(7, university.getDescription())
+                .setParameter(8, university.getContact())
+                .setParameter(9, university.getName())
                 .executeUpdate();
         em.getTransaction().commit();
     }

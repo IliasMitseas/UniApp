@@ -2,7 +2,6 @@ package ilias.uniapp.Forms;
 
 import ilias.uniapp.db.Connector;
 import ilias.uniapp.db.University;
-
 import javax.persistence.NoResultException;
 import javax.swing.JOptionPane;
 
@@ -10,9 +9,11 @@ import javax.swing.JOptionPane;
 //forma emfanisis stixion panepistimiou
 public class UniversityForm extends javax.swing.JDialog {
 
-    //global metablites pou h mia tha periexei ta stoixeia tou panepisthmioy apo to API kai h allh ta stoixeia apo th DB
+    //global metablites pou h mia tha periexei ta stoixeia tou panepisthmiou apo to API kai h allh ta stoixeia apo th DB
     private University universityInDB;
-    private University uniApi;
+    private final University universityApi;
+
+    //xrhsimopoiw th boolean metavliti gia na energopoihsw/apenergopoihsw ta koubia
     private boolean universityExistsInDB = false;
 
 
@@ -21,15 +22,14 @@ public class UniversityForm extends javax.swing.JDialog {
         //dieuthetisi ton GUI stixion
         initComponents();
 
-        //perno ta stixia pou perasan apo alli forma se auti topika
+        //perno ta stixia pou perasan apo alli forma se auti topika kai sta duo panepistimia
         universityInDB = universityParam;
-        uniApi = universityParam;
+        universityApi = universityParam;
 
         //topotheto tin forma
         pack();
         setLocationRelativeTo(null);
         setModal(true);
-
 
         //An to panepistimio uparxei sth DB tha paroousiasw to panepistimio ths vashs
         try {
@@ -41,7 +41,7 @@ public class UniversityForm extends javax.swing.JDialog {
             }
         }//an to panepistimio den uparxei sth db tha parousiasw to panepistimio tou API
         catch (NoResultException e){
-            displayUniversityData(uniApi);
+            displayUniversityData(universityApi);
         }
         checkButtonsEnabled();
     }
@@ -60,14 +60,29 @@ public class UniversityForm extends javax.swing.JDialog {
         txtUniversityDescription.setText(u.getDescription());
         u.addViews();
         Connector.insertUniversityViews(u);
+        checkButtonsEnabled();
     }
 
     //analoga tou an ipirxe stin basi anoigokleinw ta katallila plhktra
     private void checkButtonsEnabled() {
         cmdInsert.setEnabled(true);
-        cmdUpdate.setEnabled(true);
+
+        if (universityExistsInDB){
+            cmdUpdate.setEnabled(true);
+        }
+        else{
+            cmdUpdate.setEnabled(false);
+        }
         cmdDelete.setEnabled(true);
+
+        if (universityExistsInDB){
+            cmdDelete.setEnabled(true);
+        }
+        else{
+            cmdDelete.setEnabled(false);
+        }
     }
+
 
     //prosthesi neon stoixeion stin basi geumaton
     private void cmdInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdInsertActionPerformed
@@ -85,18 +100,23 @@ public class UniversityForm extends javax.swing.JDialog {
         try {
             University dbUniversity = Connector.getUniversityByName(universityInDB.getName());
             if (dbUniversity != null){
-                this.universityInDB = dbUniversity;
                 displayUniversityData(universityInDB);
             }
             JOptionPane.showMessageDialog(this, "Τα πανεπιστήμιο είναι ήδη αποθηκευμένο στη βάση δεδομένων", "Αποτυχία", JOptionPane.INFORMATION_MESSAGE);
+
         }
         //Αν πάρω Exception οτι δε βρέθηκε πανεπιστήμιο με αυτό το όνομα το γράφω στη βάση. Θεωρώ ότι το όνομα είναι μοναδικό για κάθε πανεπιστήμιο
         catch (NoResultException e){
             Connector.insertUniversity(universityInDB);
             University dbUniversity = Connector.getUniversityByName(universityInDB.getName());
-            displayUniversityData(dbUniversity);
+            universityExistsInDB = true;
+            universityInDB = dbUniversity;// Ενημέρωση του universityInDB με τα δεδομένα από τη βάση
+            displayUniversityData(dbUniversity);// Ενημέρωση του universityInDB με τα δεδομένα από τη βάσ
             JOptionPane.showMessageDialog(this, "Τα πανεπιστήμιο αποθηκεύτηκε στη βάση δεδομένων", "Επιτυχία", JOptionPane.INFORMATION_MESSAGE);
+            checkButtonsEnabled();
+
         }
+
     }//GEN-LAST:event_cmdInsertActionPerformed
 
 
@@ -111,7 +131,10 @@ public class UniversityForm extends javax.swing.JDialog {
                 University dbUniversity = Connector.getUniversityByName(universityInDB.getName());
                 if (dbUniversity != null){
                     Connector.deleteUniversity(dbUniversity);
-                    displayUniversityData(uniApi);
+                    universityExistsInDB = false;
+                    displayUniversityData(universityApi);
+                    checkButtonsEnabled();
+
                 }
                 JOptionPane.showMessageDialog(this, "Το γεύμα διαγράφηκε από τη βάση επιτυχώς!\n"
                                 + "Για να συνεχίσετε σε νέα αναζήτηση γεύματος\n"
@@ -119,7 +142,7 @@ public class UniversityForm extends javax.swing.JDialog {
                         JOptionPane.INFORMATION_MESSAGE);            }
             //Αν πάρω Exception οτι δε βρέθηκε πανεπιστήμιο με αυτό το όνομα στη βάση δεν υπάρχει κάτι για να διαγράψω
             catch (NoResultException e){
-                JOptionPane.showMessageDialog(this, "Τα πανεπιστήμιο δεν υπάρχει στη βάση δεδομένων για να διαγραφεί", "Αποτυχία", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Σφάλμα κατά τη διαγραφή: ", "Αποτυχία", JOptionPane.INFORMATION_MESSAGE);
             }
 
         }
@@ -151,6 +174,9 @@ public class UniversityForm extends javax.swing.JDialog {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Αποτυχία αποθήκευσης αλλαγών: " + e.getMessage(), "Σφάλμα", JOptionPane.ERROR_MESSAGE);
         }
+
+        //Εμφανιση τςν ενημερωμένων δεδομένων
+        displayUniversityData(universityInDB);
         // Κλείνουμε την φόρμα μετά την αποθήκευση
         this.dispose();
     }//GEN-LAST:event_jButtonSaveChangesActionPerformed
@@ -173,7 +199,7 @@ public class UniversityForm extends javax.swing.JDialog {
             jButtonSaveChanges.setEnabled(false);
         }
 
-        JOptionPane.showMessageDialog(this,"Μπορείται να τροποποιήσεται τα δεδομενα του πανεπιστημίου", "",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this,"Μπορείται να τροποποιήσεται τα δεδομένα του πανεπιστημίου", "",JOptionPane.INFORMATION_MESSAGE);
 
         checkButtonsEnabled();
     }
