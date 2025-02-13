@@ -1,4 +1,5 @@
 package ilias.uniapp.Forms;
+import ilias.uniapp.db.Connector;
 import ilias.uniapp.db.University;
 import ilias.uniapp.json.JsonHttpRequester;
 
@@ -106,6 +107,14 @@ public class UniversitySearchForm extends javax.swing.JDialog {
         }
 
         List<String> universities = JsonHttpRequester.getUniversities(universityName);
+
+//        try {
+//
+//            //edw prepei na psaxnw kai apo th vash kanonika
+//            Connector.getUniversityByName(universityName);}
+//        catch (Exception e){
+//            System.out.println("no uni found");
+//        }
 
         //An exw panw apo ena panepistimia sxetika me to keyword emfanise th lista
         if (universities!= null && universities.size()>1) {

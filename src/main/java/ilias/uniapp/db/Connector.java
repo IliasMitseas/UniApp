@@ -7,6 +7,7 @@ import static ilias.uniapp.UniApp.getEM;
 
 public class Connector {
 
+    //eisagwgh neou panepistimiou sth vash
     public static void insertUniversity(University university) {
         EntityManager em = getEM();
         em.getTransaction().begin();
@@ -25,6 +26,7 @@ public class Connector {
         em.getTransaction().commit();
     }
 
+    //enimerwsh twn views enos panepistimiou
     public static void insertUniversityViews(University university) {
         EntityManager em = getEM();
         em.getTransaction().begin();
@@ -36,7 +38,7 @@ public class Connector {
         em.getTransaction().commit();
     }
 
-    //I have a problem cocncerning an update by name.
+    //enimerwsh twn stoixeiwn enos panepistimiou vash tou onomatos tou
     public static void updateUniversity(University university) {
         EntityManager em = getEM();
         em.getTransaction().begin();
@@ -55,23 +57,36 @@ public class Connector {
         em.getTransaction().commit();
     }
 
+
+    //anazhthsh panepistimiou vash onomatos
     public static University getUniversityByName(String universityName) {
         EntityManager em = getEM();
         University university = null;
 
         Query findUniByName = em.createNamedQuery("University.findByName", University.class);
         findUniByName.setParameter("name", universityName);
-        university = (University) findUniByName.getSingleResult();  // Αν δεν υπάρχει, πετάει
+        university = (University) findUniByName.getSingleResult();  // Αν δεν υπάρχει, πετάει error
         return university;
     }
 
+    public static University getUniversityById(String universityId) {
+        EntityManager em = getEM();
+        University university = null;
+
+        Query findUniById = em.createNamedQuery("University.findById", University.class);
+        findUniById.setParameter("id", universityId);
+        university = (University) findUniById.getSingleResult();  // Αν δεν υπάρχει, πετάει error
+        return university;
+    }
+
+
+    //diagrafi panepistimiou
     public static void deleteUniversity(University university) {
         EntityManager em = getEM();
         em.getTransaction().begin();
         em.remove(university);
         em.getTransaction().commit();
     }
-
 
     public static List<University> getUniversities(){
         EntityManager entityManager = getEM();

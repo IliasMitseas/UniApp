@@ -12,15 +12,13 @@ public class UniversityForm extends javax.swing.JDialog {
     //global metablites pou h mia tha periexei ta stoixeia tou panepisthmiou apo to API kai h allh ta stoixeia apo th DB
     private University universityInDB;
     private final University universityApi;
-
     //xrhsimopoiw th boolean metavliti gia na energopoihsw/apenergopoihsw ta koubia
     private boolean universityExistsInDB = false;
 
 
     //pernaw sa parametro to panepistimio gia na mporei na emfanisei ta stoixeia tou
     public UniversityForm(University universityParam) {
-        //dieuthetisi ton GUI stixion
-        initComponents();
+        initComponents(); //dieuthetisi ton GUI stixion
 
         //perno ta stixia pou perasan apo alli forma se auti topika kai sta duo panepistimia
         universityInDB = universityParam;
@@ -46,8 +44,7 @@ public class UniversityForm extends javax.swing.JDialog {
         checkButtonsEnabled();
     }
 
-    //methodos gia na emfanizei ta stoixeia geumatos stin forma
-    //iparxoun idi gemata stin metabliti m
+    //methodos gia na emfanizei ta stoixeia geumatos stin forma, iparxoun idi gemata stin metabliti m
     private void displayUniversityData(University u) {
         jLabelUniversityId.setText(String.valueOf(u.getId()));
         txtUniversityName.setText(u.getName());
@@ -63,38 +60,18 @@ public class UniversityForm extends javax.swing.JDialog {
         checkButtonsEnabled();
     }
 
-    //analoga tou an ipirxe stin basi anoigokleinw ta katallila plhktra
+    //analoga tou an ipirxe stin basi to panepistimio anoigokleinw ta katallila plhktra
     private void checkButtonsEnabled() {
         cmdInsert.setEnabled(true);
-
-        if (universityExistsInDB){
-            cmdUpdate.setEnabled(true);
-        }
-        else{
-            cmdUpdate.setEnabled(false);
-        }
-        cmdDelete.setEnabled(true);
-
-        if (universityExistsInDB){
-            cmdDelete.setEnabled(true);
-        }
-        else{
-            cmdDelete.setEnabled(false);
-        }
+        cmdUpdate.setEnabled(universityExistsInDB);
+        cmdDelete.setEnabled(universityExistsInDB);
     }
 
 
-    //prosthesi neon stoixeion stin basi geumaton
+    //prosthesi neon panepistimiwn sth vash dedomenwn
     private void cmdInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdInsertActionPerformed
         //apothikeui stin basi ta stoixeia tou geumatos
-        universityInDB.setName(txtUniversityName.getText());
-        universityInDB.setDomain(txtUniversityDomain.getText());
-        universityInDB.setWebpage(txtUniversityWebPage.getText());
-        universityInDB.setAlphatwocode(txtUniversityAlphaCode.getText());
-        universityInDB.setCountry(txtUniversityCountry.getText());
-        universityInDB.setStateprovince(txtUniversityStateProvince.getText());
-        universityInDB.setContact(txtUniversityContactInfos.getText());
-        universityInDB.setDescription(txtUniversityDescription.getText());
+        updateUniversityFromFields();
 
         //Αν βρει το πανεπιστήμιο στη βάση τότε σημαίνει ότι ήδη υπάρχει.
         try {
@@ -103,18 +80,16 @@ public class UniversityForm extends javax.swing.JDialog {
                 displayUniversityData(universityInDB);
             }
             JOptionPane.showMessageDialog(this, "Τα πανεπιστήμιο είναι ήδη αποθηκευμένο στη βάση δεδομένων", "Αποτυχία", JOptionPane.INFORMATION_MESSAGE);
-
         }
         //Αν πάρω Exception οτι δε βρέθηκε πανεπιστήμιο με αυτό το όνομα το γράφω στη βάση. Θεωρώ ότι το όνομα είναι μοναδικό για κάθε πανεπιστήμιο
         catch (NoResultException e){
             Connector.insertUniversity(universityInDB);
-            University dbUniversity = Connector.getUniversityByName(universityInDB.getName());
             universityExistsInDB = true;
+            University dbUniversity = Connector.getUniversityByName(universityInDB.getName());
             universityInDB = dbUniversity;// Ενημέρωση του universityInDB με τα δεδομένα από τη βάση
             displayUniversityData(dbUniversity);// Ενημέρωση του universityInDB με τα δεδομένα από τη βάσ
             JOptionPane.showMessageDialog(this, "Τα πανεπιστήμιο αποθηκεύτηκε στη βάση δεδομένων", "Επιτυχία", JOptionPane.INFORMATION_MESSAGE);
             checkButtonsEnabled();
-
         }
 
     }//GEN-LAST:event_cmdInsertActionPerformed
@@ -123,7 +98,7 @@ public class UniversityForm extends javax.swing.JDialog {
     //diagrafi geumatos apo tin basi
     private void cmdDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdDeleteActionPerformed
 
-        int answer = JOptionPane.showConfirmDialog(this, "Να διαγραφεί το γεύμα;", "Απαιτείται επιβεβαίωση", JOptionPane.YES_NO_OPTION);
+        int answer = JOptionPane.showConfirmDialog(this, "Να διαγραφεί το πανεπιστήμιο;", "Απαιτείται επιβεβαίωση", JOptionPane.YES_NO_OPTION);
 
         if (answer == JOptionPane.YES_OPTION) {
             //diegrapse apo tin basi
@@ -134,11 +109,10 @@ public class UniversityForm extends javax.swing.JDialog {
                     universityExistsInDB = false;
                     displayUniversityData(universityApi);
                     checkButtonsEnabled();
-
                 }
-                JOptionPane.showMessageDialog(this, "Το γεύμα διαγράφηκε από τη βάση επιτυχώς!\n"
+                JOptionPane.showMessageDialog(this, "Το πανεπιστήμιο διαγράφηκε από τη βάση επιτυχώς!\n"
                                 + "Για να συνεχίσετε σε νέα αναζήτηση γεύματος\n"
-                                + "   κλείστε την οθόνη «Προβολή γεύματος»", "Επιτυχής διαγραφή γεύματος",
+                                + "   κλείστε την οθόνη «Προβολή πανεπιστημίου»", "Επιτυχής διαγραφή πανεπιστημίου",
                         JOptionPane.INFORMATION_MESSAGE);            }
             //Αν πάρω Exception οτι δε βρέθηκε πανεπιστήμιο με αυτό το όνομα στη βάση δεν υπάρχει κάτι για να διαγράψω
             catch (NoResultException e){
@@ -149,23 +123,16 @@ public class UniversityForm extends javax.swing.JDialog {
         if (answer == JOptionPane.NO_OPTION) {
             displayUniversityData(universityInDB);
             JOptionPane.showMessageDialog(this,
-                    "Το γεύμα δεν διαγράφηκε!", "Διατήρηση γεύματος στη βάση δεδομένων",
+                    "Το πανεπιστήμιο δεν διαγράφηκε!", "Διατήρηση πανεπιστημίου στη βάση δεδομένων",
                     JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_cmdDeleteActionPerformed
 
 
+    //Μέθοδος για την αποθήκευση αλλαγών στο πανεπιστήμιο
     private void jButtonSaveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveChangesActionPerformed
-        // TODO add your handling code
         // Ενημερώνουμε το αντικείμενο universityInDB με τα νέα στοιχεία από τα πεδία της φόρμας
-        universityInDB.setName(txtUniversityName.getText());
-        universityInDB.setDomain(txtUniversityDomain.getText());
-        universityInDB.setWebpage(txtUniversityWebPage.getText());
-        universityInDB.setAlphatwocode(txtUniversityAlphaCode.getText());
-        universityInDB.setCountry(txtUniversityCountry.getText());
-        universityInDB.setStateprovince(txtUniversityStateProvince.getText());
-        universityInDB.setContact(txtUniversityContactInfos.getText());
-        universityInDB.setDescription(txtUniversityDescription.getText());
+        updateUniversityFromFields();
 
         // Προσπαθούμε να αποθηκεύσουμε τις αλλαγές στη βάση δεδομένων
         try {
@@ -192,12 +159,7 @@ public class UniversityForm extends javax.swing.JDialog {
         txtUniversityContactInfos.setEditable(true);
         txtUniversityDescription.setEditable(true);
 
-        if (universityExistsInDB){
-            jButtonSaveChanges.setEnabled(true);
-        }
-        else {
-            jButtonSaveChanges.setEnabled(false);
-        }
+        jButtonSaveChanges.setEnabled(universityExistsInDB);
 
         JOptionPane.showMessageDialog(this,"Μπορείται να τροποποιήσεται τα δεδομένα του πανεπιστημίου", "",JOptionPane.INFORMATION_MESSAGE);
 
@@ -206,17 +168,11 @@ public class UniversityForm extends javax.swing.JDialog {
 
     //methodos gia emfanisi tis formas stin othoni
     public static void showUniversityForm(University university) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
                 }
             }
         } catch (ClassNotFoundException ex) {
@@ -241,6 +197,18 @@ public class UniversityForm extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(() -> {
             new UniversityForm(university).setVisible(true);
         });
+    }
+
+
+    private void updateUniversityFromFields() {
+        universityInDB.setName(txtUniversityName.getText());
+        universityInDB.setDomain(txtUniversityDomain.getText());
+        universityInDB.setWebpage(txtUniversityWebPage.getText());
+        universityInDB.setAlphatwocode(txtUniversityAlphaCode.getText());
+        universityInDB.setCountry(txtUniversityCountry.getText());
+        universityInDB.setStateprovince(txtUniversityStateProvince.getText());
+        universityInDB.setContact(txtUniversityContactInfos.getText());
+        universityInDB.setDescription(txtUniversityDescription.getText());
     }
 
     /**

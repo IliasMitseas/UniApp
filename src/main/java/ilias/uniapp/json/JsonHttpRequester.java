@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import ilias.uniapp.db.Connector;
 import ilias.uniapp.db.University;
 
 import java.io.IOException;
@@ -19,8 +20,7 @@ public class JsonHttpRequester {
 
     private static final String SEARCH_UNIVERSITY_URL = "http://universities.hipolabs.com/search?name=";
     private static final String SEARCH_BY_COUNTRY_URL = "http://universities.hipolabs.com/search?country=";
-    private static final String UNIVERSITIES = "universities";
-    private static final String UNIVERSITY_NAME_STRING = "strUniversity";
+
 
     // Μέθοδος για την αποστολή HTTP GET αιτήματος και λήψη της απάντησης σε μορφή String
     private static String getJsonString(String serverUrl, String param) {
@@ -36,9 +36,7 @@ public class JsonHttpRequester {
 
         String url = serverUrl + urlParam;
         HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .build();
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url)).build();
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             return response.body();
@@ -89,7 +87,6 @@ public class JsonHttpRequester {
             if (jsonObject.isJsonObject()) {
                 JsonObject jsonObjectJson = jsonObject.getAsJsonObject();
                 JsonElement universityName = jsonObjectJson.get("name");
-
                 if (universityName != null) {
                     universities.add(universityName.getAsString());
                 }

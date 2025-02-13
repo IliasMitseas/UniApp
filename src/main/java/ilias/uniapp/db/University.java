@@ -82,15 +82,6 @@ public class University implements Serializable {
         this.id = id;
     }
 
-    public University(Integer id, String name, String domain, String webpage, String alphatwocode, String country, String stateprovince) {
-        this.id = id;
-        this.name = name;
-        this.domain = domain;
-        this.webpage = webpage;
-        this.country = country;
-        this.alphatwocode = alphatwocode;
-        this.stateprovince = stateprovince;
-    }
 
     public University(String name, String domain, String webpage, String alphatwocode, String country, String stateprovince) {
         this.name = name;
