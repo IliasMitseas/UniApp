@@ -53,6 +53,16 @@ public class Connector {
                 .executeUpdate();
         em.getTransaction().commit();
     }
+    
+    public static void updateUniversityComments(University university) {
+        EntityManager em = getEM();
+        em.getTransaction().begin();
+        em.createNativeQuery("UPDATE university SET comments = ? WHERE id = ?")
+                .setParameter(1, university.getComments())
+                .setParameter(2, university.getId())
+                .executeUpdate();
+        em.getTransaction().commit();
+    }
 
 
     //anazhthsh panepistimiou vash onomatos

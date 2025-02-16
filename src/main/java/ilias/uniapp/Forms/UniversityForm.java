@@ -65,6 +65,7 @@ public class UniversityForm extends javax.swing.JDialog {
         cmdInsert.setEnabled(true);
         cmdUpdate.setEnabled(universityExistsInDB);
         cmdDelete.setEnabled(universityExistsInDB);
+        AddComments.setEnabled(universityExistsInDB);
     }
 
 
@@ -200,6 +201,10 @@ public class UniversityForm extends javax.swing.JDialog {
         });
     }
 
+    private void AddCommentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCommentsActionPerformed
+        CommentsForm.showCommentsForm(this, universityInDB);
+    }//GEN-LAST:event_AddCommentsActionPerformed
+
 
     private void updateUniversityFromFields() {
         universityInDB.setName(txtUniversityName.getText());
@@ -242,10 +247,12 @@ public class UniversityForm extends javax.swing.JDialog {
         txtUniversityContactInfos = new javax.swing.JTextField();
         lblUniversityDescription = new javax.swing.JLabel();
         txtUniversityDescription = new javax.swing.JTextField();
+        AddComments = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Προβολή Πανεπιστημίου");
         setBackground(new java.awt.Color(255, 102, 102));
+        setForeground(new java.awt.Color(204, 204, 204));
         setModal(true);
 
         lblUniversityName.setText("Όνομα Πανεπιστημίου:");
@@ -258,21 +265,21 @@ public class UniversityForm extends javax.swing.JDialog {
 
         lblUniversityWebPage.setText("Web_Page:");
 
-        cmdInsert.setText("Αποθήκευση δεδομένων Πανεπιστημίου στη βάση");
+        cmdInsert.setText("Save Uni in DB");
         cmdInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdInsertActionPerformed(evt);
             }
         });
 
-        cmdUpdate.setText("Επεξεργασία δεδομένων πανεπιστημίου");
+        cmdUpdate.setText("Update Uni");
         cmdUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdUpdateActionPerformed(evt);
             }
         });
 
-        cmdDelete.setText("Διαγραφή δεδομένων πανεπιστημίου");
+        cmdDelete.setText("Delete Uni");
         cmdDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdDeleteActionPerformed(evt);
@@ -297,7 +304,7 @@ public class UniversityForm extends javax.swing.JDialog {
 
         txtUniversityStateProvince.setEditable(false);
 
-        jButtonSaveChanges.setText("Αποθήκευση Αλλαγων");
+        jButtonSaveChanges.setText("Save changes");
         jButtonSaveChanges.setEnabled(false);
         jButtonSaveChanges.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -313,97 +320,115 @@ public class UniversityForm extends javax.swing.JDialog {
 
         txtUniversityDescription.setEditable(false);
 
+        AddComments.setText("Add comments");
+        AddComments.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddCommentsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButtonSaveChanges, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(cmdUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
-            .addComponent(cmdDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(cmdInsert, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelUniversityId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblUniversityName)
+                            .addComponent(lblUniversityDomain)
+                            .addComponent(lblUniversityWebPage)
+                            .addComponent(lblUniversityAlphaTwoCode)
+                            .addComponent(lblUniversityCountry))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabelUniversityId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtUniversityDomain, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
+                                    .addComponent(txtUniversityWebPage)
+                                    .addComponent(txtUniversityName))
+                                .addComponent(txtUniversityAlphaCode, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtUniversityCountry, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblUniversityStateProvince)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtUniversityStateProvince, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblUniversityDescription)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblUniversityName)
-                                    .addComponent(lblUniversityDomain)
-                                    .addComponent(lblUniversityWebPage)
-                                    .addComponent(lblUniversityAlphaTwoCode)
-                                    .addComponent(lblUniversityCountry))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtUniversityName, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
-                                    .addComponent(txtUniversityDomain, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtUniversityWebPage, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtUniversityAlphaCode, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtUniversityCountry, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtUniversityStateProvince, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtUniversityContactInfos, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtUniversityDescription, javax.swing.GroupLayout.Alignment.LEADING)))
-                            .addComponent(lblUniversityStateProvince))
-                        .addContainerGap(38, Short.MAX_VALUE))
+                                .addComponent(cmdInsert)
+                                .addGap(18, 18, 18)
+                                .addComponent(cmdDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cmdUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonSaveChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(AddComments))
+                            .addComponent(txtUniversityDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblUniversityContactInfos)
-                            .addComponent(lblUniversityDescription))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(lblUniversityContactInfos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtUniversityContactInfos, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabelUniversityId, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblUniversityName)
-                    .addComponent(txtUniversityName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUniversityName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUniversityName))
                 .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblUniversityDomain)
-                    .addComponent(txtUniversityDomain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUniversityDomain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUniversityDomain))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUniversityWebPage)
                     .addComponent(txtUniversityWebPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblUniversityAlphaTwoCode)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtUniversityAlphaCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtUniversityCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblUniversityCountry))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUniversityAlphaCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUniversityAlphaTwoCode))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUniversityCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUniversityCountry))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUniversityStateProvince)
                     .addComponent(txtUniversityStateProvince, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUniversityContactInfos)
                     .addComponent(txtUniversityContactInfos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUniversityDescription)
                     .addComponent(txtUniversityDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
-                .addComponent(cmdInsert)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmdDelete)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmdUpdate)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonSaveChanges)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmdInsert)
+                    .addComponent(cmdDelete)
+                    .addComponent(cmdUpdate)
+                    .addComponent(jButtonSaveChanges)
+                    .addComponent(AddComments))
+                .addContainerGap(210, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddComments;
     private javax.swing.JButton cmdDelete;
     private javax.swing.JButton cmdInsert;
     private javax.swing.JButton cmdUpdate;

@@ -7,6 +7,9 @@
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="66" green="66" red="ff" type="rgb"/>
     </Property>
+    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+    </Property>
     <Property name="modal" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
@@ -28,64 +31,79 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jButtonSaveChanges" alignment="0" max="32767" attributes="0"/>
-          <Component id="cmdUpdate" alignment="0" pref="867" max="32767" attributes="0"/>
-          <Component id="cmdDelete" alignment="0" max="32767" attributes="0"/>
-          <Component id="cmdInsert" alignment="0" pref="867" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabelUniversityId" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblUniversityName" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblUniversityDomain" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblUniversityWebPage" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblUniversityAlphaTwoCode" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblUniversityCountry" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="txtUniversityName" pref="692" max="32767" attributes="0"/>
-                                  <Component id="txtUniversityDomain" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtUniversityWebPage" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtUniversityAlphaCode" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtUniversityCountry" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtUniversityStateProvince" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtUniversityContactInfos" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtUniversityDescription" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Component id="lblUniversityStateProvince" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblUniversityName" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblUniversityDomain" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblUniversityWebPage" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblUniversityAlphaTwoCode" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblUniversityCountry" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="38" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblUniversityContactInfos" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblUniversityDescription" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabelUniversityId" max="32767" attributes="0"/>
+                                  <Component id="txtUniversityDomain" alignment="0" pref="608" max="32767" attributes="0"/>
+                                  <Component id="txtUniversityWebPage" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtUniversityName" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="txtUniversityAlphaCode" alignment="1" min="-2" pref="608" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="txtUniversityCountry" alignment="1" min="-2" pref="608" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblUniversityStateProvince" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="txtUniversityStateProvince" min="-2" pref="608" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lblUniversityDescription" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="cmdInsert" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="cmdDelete" min="-2" pref="106" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="cmdUpdate" min="-2" pref="106" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jButtonSaveChanges" min="-2" pref="106" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="AddComments" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="txtUniversityDescription" min="-2" pref="608" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblUniversityContactInfos" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="txtUniversityContactInfos" min="-2" pref="608" max="-2" attributes="0"/>
+                  </Group>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabelUniversityId" min="-2" pref="18" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblUniversityName" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtUniversityName" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtUniversityName" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblUniversityName" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblUniversityDomain" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtUniversityDomain" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtUniversityDomain" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblUniversityDomain" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -93,41 +111,39 @@
                   <Component id="txtUniversityWebPage" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblUniversityAlphaTwoCode" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="txtUniversityAlphaCode" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtUniversityCountry" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblUniversityCountry" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtUniversityAlphaCode" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblUniversityAlphaTwoCode" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtUniversityCountry" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblUniversityCountry" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblUniversityStateProvince" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtUniversityStateProvince" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblUniversityContactInfos" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtUniversityContactInfos" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblUniversityDescription" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtUniversityDescription" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="159" max="32767" attributes="0"/>
-              <Component id="cmdInsert" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="cmdDelete" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="cmdUpdate" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButtonSaveChanges" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="cmdInsert" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmdDelete" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmdUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonSaveChanges" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="AddComments" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="210" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -160,7 +176,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="cmdInsert">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x391;&#x3c0;&#x3bf;&#x3b8;&#x3ae;&#x3ba;&#x3b5;&#x3c5;&#x3c3;&#x3b7; &#x3b4;&#x3b5;&#x3b4;&#x3bf;&#x3bc;&#x3ad;&#x3bd;&#x3c9;&#x3bd; &#x3a0;&#x3b1;&#x3bd;&#x3b5;&#x3c0;&#x3b9;&#x3c3;&#x3c4;&#x3b7;&#x3bc;&#x3af;&#x3bf;&#x3c5; &#x3c3;&#x3c4;&#x3b7; &#x3b2;&#x3ac;&#x3c3;&#x3b7;"/>
+        <Property name="text" type="java.lang.String" value="Save Uni in DB"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdInsertActionPerformed"/>
@@ -168,7 +184,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="cmdUpdate">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x395;&#x3c0;&#x3b5;&#x3be;&#x3b5;&#x3c1;&#x3b3;&#x3b1;&#x3c3;&#x3af;&#x3b1; &#x3b4;&#x3b5;&#x3b4;&#x3bf;&#x3bc;&#x3ad;&#x3bd;&#x3c9;&#x3bd; &#x3c0;&#x3b1;&#x3bd;&#x3b5;&#x3c0;&#x3b9;&#x3c3;&#x3c4;&#x3b7;&#x3bc;&#x3af;&#x3bf;&#x3c5;"/>
+        <Property name="text" type="java.lang.String" value="Update Uni"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdUpdateActionPerformed"/>
@@ -176,7 +192,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="cmdDelete">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x394;&#x3b9;&#x3b1;&#x3b3;&#x3c1;&#x3b1;&#x3c6;&#x3ae; &#x3b4;&#x3b5;&#x3b4;&#x3bf;&#x3bc;&#x3ad;&#x3bd;&#x3c9;&#x3bd; &#x3c0;&#x3b1;&#x3bd;&#x3b5;&#x3c0;&#x3b9;&#x3c3;&#x3c4;&#x3b7;&#x3bc;&#x3af;&#x3bf;&#x3c5;"/>
+        <Property name="text" type="java.lang.String" value="Delete Uni"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdDeleteActionPerformed"/>
@@ -236,7 +252,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButtonSaveChanges">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x391;&#x3c0;&#x3bf;&#x3b8;&#x3ae;&#x3ba;&#x3b5;&#x3c5;&#x3c3;&#x3b7; &#x391;&#x3bb;&#x3bb;&#x3b1;&#x3b3;&#x3c9;&#x3bd;"/>
+        <Property name="text" type="java.lang.String" value="Save changes"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
@@ -262,6 +278,14 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="AddComments">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Add comments"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddCommentsActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
