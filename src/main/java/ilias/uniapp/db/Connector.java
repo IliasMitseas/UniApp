@@ -75,14 +75,6 @@ public class Connector {
         return university;
     }
 
-    public static University getUniversityById(String universityId) {
-        EntityManager em = getEM();
-        University university = null;
-        Query findUniById = em.createNamedQuery("University.findById", University.class);
-        findUniById.setParameter("id", universityId);
-        university = (University) findUniById.getSingleResult();  // Αν δεν υπάρχει, πετάει error
-        return university;
-    }
 
 
     //diagrafi panepistimiou

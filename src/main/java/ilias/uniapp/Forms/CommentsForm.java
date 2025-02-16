@@ -17,8 +17,25 @@ public class CommentsForm extends JDialog {
         setTitle("Comments for " + university.getName()); // Set the window title to the university name
         setLocationRelativeTo(parent); // Center the dialog relative to the parent window
 
-        // Load existing comments into the text area
+        // Fortwse ta hdh uparxonta sxolia gia to panepistimio
         CommentsTxt.setText(university.getComments());
+    }
+
+    private void jButtonSaveCommentsActionPerformed(java.awt.event.ActionEvent evt) {
+        String comments = CommentsTxt.getText();
+        if (!comments.isEmpty()) {
+            university.setComments(comments); // Update the University object with the new comments
+            Connector.updateUniversityComments(university); // Save to the database
+        }
+        dispose(); // Close the dialog after saving
+    }
+
+
+    public static void showCommentsForm(Dialog parent, University university) {
+        java.awt.EventQueue.invokeLater(() -> {
+            CommentsForm dialog = new CommentsForm(parent, university);
+            dialog.setVisible(true);
+        });
     }
 
     /**
@@ -83,21 +100,6 @@ public class CommentsForm extends JDialog {
         pack();
     }
 
-    private void jButtonSaveCommentsActionPerformed(java.awt.event.ActionEvent evt) {
-        String comments = CommentsTxt.getText();
-        if (!comments.isEmpty()) {
-            university.setComments(comments); // Update the University object with the new comments
-            Connector.updateUniversityComments(university); // Save to the database
-        }
-        dispose(); // Close the dialog after saving
-    }
-
-    public static void showCommentsForm(Dialog parent, University university) {
-        java.awt.EventQueue.invokeLater(() -> {
-            CommentsForm dialog = new CommentsForm(parent, university);
-            dialog.setVisible(true);
-        });
-    }
 
     // Variables declaration
     private javax.swing.JTextArea CommentsTxt;
