@@ -20,6 +20,7 @@ public class UniversitiesForm extends javax.swing.JDialog {
         for (String universityName : universities) {
             universitiesList.addElement(universityName);
         }
+
         jListUniversities.setModel(universitiesList);
         jListUniversities.setEnabled(true);
 

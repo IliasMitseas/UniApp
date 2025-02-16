@@ -106,29 +106,33 @@ public class UniversitySearchForm extends javax.swing.JDialog {
             return;
         }
 
-        List<String> universities = JsonHttpRequester.getUniversities(universityName);
 
-//        try {
-//
-//            //edw prepei na psaxnw kai apo th vash kanonika
-//            Connector.getUniversityByName(universityName);}
-//        catch (Exception e){
-//            System.out.println("no uni found");
-//        }
 
-        //An exw panw apo ena panepistimia sxetika me to keyword emfanise th lista
-        if (universities!= null && universities.size()>1) {
-            UniversitiesForm.showUniversitiesForm(universities);
-        }
-        //Alliws emfanise th forma gia ena panepistimio
-        else if (universities.size() == 1){
-            University university = JsonHttpRequester.getUniversity(universityName);
-            UniversityForm.showUniversityForm(university);
+        try {
+            //edw prwta psaxnw apo th vash.
+           University u = Connector.getUniversityByName(universityName);
+           UniversityForm.showUniversityForm(u);
+        }//an de vrw kat sth vash tote pairnw exception kai paw kai psaxnw sto API
+        catch (Exception e) {
+            System.out.println(e);
+            List<String> universities = JsonHttpRequester.getUniversities(universityName);
 
-        } else {
-            lblError.setText("Το πανεπιστήμιο δεν βρέθηκε.");
-        }
-    }//GEN-LAST:event_cmdSearchActionPerformed
+            //An exw panw apo ena panepistimia sxetika me to keyword emfanise th lista
+            if (universities!= null && universities.size()>1) {
+                UniversitiesForm.showUniversitiesForm(universities);
+            }
+            //Alliws emfanise th forma gia ena panepistimio
+            else if (universities.size() == 1){
+                University university = JsonHttpRequester.getUniversity(universityName);
+                UniversityForm.showUniversityForm(university);
+            }
+            else {
+                lblError.setText("Το πανεπιστήμιο δεν βρέθηκε.");
+            }
+        }//GEN-LAST:event_cmdSearchActionPerformed
+    }
+
+
 
     private void txtUniversityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUniversityActionPerformed
         cmdSearchActionPerformed(evt);

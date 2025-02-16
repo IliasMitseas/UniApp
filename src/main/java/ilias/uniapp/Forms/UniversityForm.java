@@ -113,13 +113,14 @@ public class UniversityForm extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Το πανεπιστήμιο διαγράφηκε από τη βάση επιτυχώς!\n"
                                 + "Για να συνεχίσετε σε νέα αναζήτηση γεύματος\n"
                                 + "   κλείστε την οθόνη «Προβολή πανεπιστημίου»", "Επιτυχής διαγραφή πανεπιστημίου",
-                        JOptionPane.INFORMATION_MESSAGE);            }
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
             //Αν πάρω Exception οτι δε βρέθηκε πανεπιστήμιο με αυτό το όνομα στη βάση δεν υπάρχει κάτι για να διαγράψω
             catch (NoResultException e){
                 JOptionPane.showMessageDialog(this, "Σφάλμα κατά τη διαγραφή: ", "Αποτυχία", JOptionPane.INFORMATION_MESSAGE);
             }
-
         }
+
         if (answer == JOptionPane.NO_OPTION) {
             displayUniversityData(universityInDB);
             JOptionPane.showMessageDialog(this,
@@ -142,7 +143,7 @@ public class UniversityForm extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Αποτυχία αποθήκευσης αλλαγών: " + e.getMessage(), "Σφάλμα", JOptionPane.ERROR_MESSAGE);
         }
 
-        //Εμφανιση τςν ενημερωμένων δεδομένων
+        //Εμφανιση των ενημερωμένων δεδομένων
         displayUniversityData(universityInDB);
         // Κλείνουμε την φόρμα μετά την αποθήκευση
         this.dispose();

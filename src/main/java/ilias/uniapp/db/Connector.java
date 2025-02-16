@@ -7,11 +7,10 @@ import static ilias.uniapp.UniApp.getEM;
 
 public class Connector {
 
-    //eisagwgh neou panepistimiou sth vash
+    //eisagwgh neou panepistimiou sth vash dedomenwn
     public static void insertUniversity(University university) {
         EntityManager em = getEM();
         em.getTransaction().begin();
-
         em.createNativeQuery("INSERT INTO university (name, domain, webpage, alphatwocode, country, stateprovince, description, contact, universityviews) VALUES (?,?,?,?,?,?,?,?,?)")
                 .setParameter(1, university.getName())
                 .setParameter(2, university.getDomain())
@@ -30,7 +29,6 @@ public class Connector {
     public static void insertUniversityViews(University university) {
         EntityManager em = getEM();
         em.getTransaction().begin();
-
         em.createNativeQuery("update university SET universityviews = ? WHERE name = ?")
                 .setParameter(1, university.getUniversityviews())
                 .setParameter(2, university.getName())
@@ -38,12 +36,11 @@ public class Connector {
         em.getTransaction().commit();
     }
 
-    //enimerwsh twn stoixeiwn enos panepistimiou vash tou onomatos tou
+    //enimerwsh twn stoixeiwn enos panepistimiou vash tou monadikou id tou
     public static void updateUniversity(University university) {
         EntityManager em = getEM();
         em.getTransaction().begin();
-
-        em.createNativeQuery("UPDATE university SET name = ?, domain = ?, webpage = ?, alphatwocode = ?, country = ?, stateprovince = ?, description = ?, contact = ? WHERE name = ?")
+        em.createNativeQuery("UPDATE university SET name = ?, domain = ?, webpage = ?, alphatwocode = ?, country = ?, stateprovince = ?, description = ?, contact = ? WHERE id = ?")
                 .setParameter(1, university.getName())
                 .setParameter(2, university.getDomain())
                 .setParameter(3, university.getWebpage())
@@ -52,7 +49,7 @@ public class Connector {
                 .setParameter(6, university.getStateprovince())
                 .setParameter(7, university.getDescription())
                 .setParameter(8, university.getContact())
-                .setParameter(9, university.getName())
+                .setParameter(9, university.getId())
                 .executeUpdate();
         em.getTransaction().commit();
     }
@@ -62,7 +59,6 @@ public class Connector {
     public static University getUniversityByName(String universityName) {
         EntityManager em = getEM();
         University university = null;
-
         Query findUniByName = em.createNamedQuery("University.findByName", University.class);
         findUniByName.setParameter("name", universityName);
         university = (University) findUniByName.getSingleResult();  // Αν δεν υπάρχει, πετάει error
@@ -72,7 +68,6 @@ public class Connector {
     public static University getUniversityById(String universityId) {
         EntityManager em = getEM();
         University university = null;
-
         Query findUniById = em.createNamedQuery("University.findById", University.class);
         findUniById.setParameter("id", universityId);
         university = (University) findUniById.getSingleResult();  // Αν δεν υπάρχει, πετάει error
@@ -90,9 +85,7 @@ public class Connector {
 
     public static List<University> getUniversities(){
         EntityManager entityManager = getEM();
-
         Query findAllUniversities = entityManager.createNamedQuery("University.findAll", University.class);
         return findAllUniversities.getResultList();
-
     }
 }
