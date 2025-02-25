@@ -11,15 +11,18 @@ import java.util.ArrayList;
 
 public class UniApp {
 
-    
+    //Δημιουργία του entity manager
     private static EntityManager em = null;
-    
+
+    //Επιστροφή του entity manager
     public static EntityManager getEM(){
     return em;
     }
-    
+
+    //Επιστροφή των πανεπιστημίων από τη βάση δεδομένων
     public static void main(String[] args) {
-        
+
+
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("ilias_UniApp_jar_1PU");
         em = factory.createEntityManager();
         

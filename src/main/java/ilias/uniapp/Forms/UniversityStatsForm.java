@@ -166,6 +166,7 @@ public class UniversityStatsForm extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Μέθοδος που καλείται όταν ο χρήστης πατήσει το κουμπί "Προβολή στατιστικών πανεπιστημίων σε αρχείο pdf"
     private void jButtonToPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonToPDFActionPerformed
 
         // Δημιουργία διαλόγου αποθήκευσης
@@ -184,8 +185,8 @@ public class UniversityStatsForm extends javax.swing.JDialog {
             return;
         }
 
-        // Αποθηκέυουμε στην μεταβλητή path, την διαδρομή του αρχείου
-        // αποθήκευσης που επίλεξε ο χρήστης
+        // Λήψη του αρχείου αποθήκευσης από τον fileChooser
+        // και δημιουργία του pdf αρχείου
         String path = "";
         try {
             path = fileChooser.getSelectedFile().getCanonicalPath();

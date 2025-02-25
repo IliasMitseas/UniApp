@@ -8,6 +8,7 @@ import java.util.List;
 
 public class UniversitiesForm extends javax.swing.JDialog {
 
+    //constructor
     public UniversitiesForm(List universityParam) {
         initComponents();
 

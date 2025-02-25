@@ -25,7 +25,7 @@ public class Connector {
         em.getTransaction().commit();
     }
 
-    //enimerwsh twn views enos panepistimiou
+    //enimerwsh twn viewcounts enos panepistimiou vash tou onomatos tou
     public static void insertUniversityViews(University university) {
         EntityManager em = getEM();
         em.getTransaction().begin();
@@ -53,7 +53,8 @@ public class Connector {
                 .executeUpdate();
         em.getTransaction().commit();
     }
-    
+
+    //enimerwsh twn comments enos panepistimiou vash tou monadikou id tou
     public static void updateUniversityComments(University university) {
         EntityManager em = getEM();
         em.getTransaction().begin();
@@ -63,7 +64,6 @@ public class Connector {
                 .executeUpdate();
         em.getTransaction().commit();
     }
-
 
     //anazhthsh panepistimiou vash onomatos
     public static University getUniversityByName(String universityName) {
@@ -76,7 +76,6 @@ public class Connector {
     }
 
 
-
     //diagrafi panepistimiou
     public static void deleteUniversity(University university) {
         EntityManager em = getEM();
@@ -85,6 +84,7 @@ public class Connector {
         em.getTransaction().commit();
     }
 
+    //anazhthsh panepistimiou vash monadikou id
     public static List<University> getUniversities(){
         EntityManager entityManager = getEM();
         Query findAllUniversities = entityManager.createNamedQuery("University.findAll", University.class);

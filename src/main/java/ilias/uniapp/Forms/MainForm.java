@@ -124,7 +124,6 @@ public class MainForm extends javax.swing.JFrame {
         UniversityStatsForm.showUniversitiesStatsForm();
     }//GEN-LAST:event_jButtonStatisticsActionPerformed
 
-
     private void jButtonSearchUniversityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchUniversityActionPerformed
         UniversitySearchForm.showUniversitySearchForm();
     }//GEN-LAST:event_jButtonSearchUniversityActionPerformed

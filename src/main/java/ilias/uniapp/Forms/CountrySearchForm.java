@@ -96,7 +96,6 @@ public class CountrySearchForm extends JDialog {
     
     private void cmdSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSearchActionPerformed
         lblError.setText("");  // Clear any previous error
-
         String countryName = txtCountry.getText().trim();
 
         if (countryName.isEmpty()) {

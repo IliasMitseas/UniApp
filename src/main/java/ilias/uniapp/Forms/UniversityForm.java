@@ -16,7 +16,7 @@ public class UniversityForm extends javax.swing.JDialog {
     private boolean universityExistsInDB = false;
 
 
-    //pernaw sa parametro to panepistimio gia na mporei na emfanisei ta stoixeia tou
+    //Constructor opou pernaw sa parametro to panepistimio gia na mporei na emfanisei ta stoixeia tou
     public UniversityForm(University universityParam) {
         initComponents(); //dieuthetisi ton GUI stixion
 
@@ -69,12 +69,12 @@ public class UniversityForm extends javax.swing.JDialog {
     }
 
 
-    //prosthesi neon panepistimiwn sth vash dedomenwn
+    //Methodos gia tin eisagwgi panepistimiou stin vasi dedomenwn
     private void cmdInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdInsertActionPerformed
         //apothikeui stin basi ta stoixeia tou geumatos
         updateUniversityFromFields();
 
-        //Αν βρει το πανεπιστήμιο στη βάση τότε σημαίνει ότι ήδη υπάρχει.
+        //Elengxw an to panepistimio uparxei idi stin vasi
         try {
             University dbUniversity = Connector.getUniversityByName(universityInDB.getName());
             if (dbUniversity != null){
@@ -82,7 +82,7 @@ public class UniversityForm extends javax.swing.JDialog {
             }
             JOptionPane.showMessageDialog(this, "Τα πανεπιστήμιο είναι ήδη αποθηκευμένο στη βάση δεδομένων", "Αποτυχία", JOptionPane.INFORMATION_MESSAGE);
         }
-        //Αν πάρω Exception οτι δε βρέθηκε πανεπιστήμιο με αυτό το όνομα το γράφω στη βάση. Θεωρώ ότι το όνομα είναι μοναδικό για κάθε πανεπιστήμιο
+        //An parw exception oti den uparxei to panepistimio stin vasi tote to eisagw.
         catch (NoResultException e){
             Connector.insertUniversity(universityInDB);
             universityExistsInDB = true;
@@ -96,13 +96,12 @@ public class UniversityForm extends javax.swing.JDialog {
     }//GEN-LAST:event_cmdInsertActionPerformed
 
 
-    //diagrafi geumatos apo tin basi
+    //Methodos gia tin diagrafi panepistimiou apo tin vasi dedomenwn
     private void cmdDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdDeleteActionPerformed
-
         int answer = JOptionPane.showConfirmDialog(this, "Να διαγραφεί το πανεπιστήμιο;", "Απαιτείται επιβεβαίωση", JOptionPane.YES_NO_OPTION);
 
         if (answer == JOptionPane.YES_OPTION) {
-            //diegrapse apo tin basi
+            //Diegkrinw an to panepistimio uparxei stin vasi kai an uparxei to diagrafw
             try {
                 University dbUniversity = Connector.getUniversityByName(universityInDB.getName());
                 if (dbUniversity != null){
@@ -112,11 +111,11 @@ public class UniversityForm extends javax.swing.JDialog {
                     checkButtonsEnabled();
                 }
                 JOptionPane.showMessageDialog(this, "Το πανεπιστήμιο διαγράφηκε από τη βάση επιτυχώς!\n"
-                                + "Για να συνεχίσετε σε νέα αναζήτηση γεύματος\n"
+                                + "Για να συνεχίσετε σε νέα αναζήτηση πανεπιστημίου\n"
                                 + "   κλείστε την οθόνη «Προβολή πανεπιστημίου»", "Επιτυχής διαγραφή πανεπιστημίου",
                         JOptionPane.INFORMATION_MESSAGE);
             }
-            //Αν πάρω Exception οτι δε βρέθηκε πανεπιστήμιο με αυτό το όνομα στη βάση δεν υπάρχει κάτι για να διαγράψω
+            //An parw exception oti den uparxei to panepistimio stin vasi tote emfanizw minima sfalmatos
             catch (NoResultException e){
                 JOptionPane.showMessageDialog(this, "Σφάλμα κατά τη διαγραφή: ", "Αποτυχία", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -131,12 +130,12 @@ public class UniversityForm extends javax.swing.JDialog {
     }//GEN-LAST:event_cmdDeleteActionPerformed
 
 
-    //Μέθοδος για την αποθήκευση αλλαγών στο πανεπιστήμιο
+    //Methodos gia tin apothikeusi twn allagwn pou egine stin forma
     private void jButtonSaveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveChangesActionPerformed
         // Ενημερώνουμε το αντικείμενο universityInDB με τα νέα στοιχεία από τα πεδία της φόρμας
         updateUniversityFromFields();
 
-        // Προσπαθούμε να αποθηκεύσουμε τις αλλαγές στη βάση δεδομένων
+        //Apothikeusi twn allagwn stin vasi
         try {
             Connector.updateUniversity(universityInDB);
             JOptionPane.showMessageDialog(this, "Οι αλλαγές αποθηκεύτηκαν επιτυχώς!", "Επιτυχία", JOptionPane.INFORMATION_MESSAGE);
@@ -144,9 +143,9 @@ public class UniversityForm extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Αποτυχία αποθήκευσης αλλαγών: " + e.getMessage(), "Σφάλμα", JOptionPane.ERROR_MESSAGE);
         }
 
-        //Εμφανιση των ενημερωμένων δεδομένων
+        //Emfanizoume ta stoixeia tou panepistimiou
         displayUniversityData(universityInDB);
-        // Κλείνουμε την φόρμα μετά την αποθήκευση
+        //Kleinw thn forma
         this.dispose();
     }//GEN-LAST:event_jButtonSaveChangesActionPerformed
 
@@ -168,7 +167,7 @@ public class UniversityForm extends javax.swing.JDialog {
         checkButtonsEnabled();
     }
 
-    //methodos gia emfanisi tis formas stin othoni
+    //Methodos gia tin emfanisi tis formas
     public static void showUniversityForm(University university) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

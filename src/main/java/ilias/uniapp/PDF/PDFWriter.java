@@ -20,6 +20,8 @@ import java.util.List;
 
 public class PDFWriter {
 
+
+    //Δημιουργεί τον πίνακα με τα στατιστικά των πανεπιστημίων
     private static void addTableHeader(PdfPTable table, Font font) {
 
         PdfPCell header = new PdfPCell();
@@ -37,6 +39,7 @@ public class PDFWriter {
         table.addCell(header);
     }
 
+    //Δημιουργεί το PDF αρχείο με τα στατιστικά των πανεπιστημίων
     public static boolean createPDFFile(List<University> universitiesViews, String path) {
         Document document = new Document();
         try {

@@ -89,13 +89,14 @@ public class UniversitySearchForm extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //methodos gia emfanisi tis formas anazitisis
+    //emfanizei tin forma gia anazitisi panepistimiou
     public static void showUniversitySearchForm() {
         java.awt.EventQueue.invokeLater(() -> {
             new UniversitySearchForm().setVisible(true);
         });
     }
-    
+
+    //anazitisi panepistimiou
     private void cmdSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSearchActionPerformed
         lblError.setText("");  // Clear any previous error
 
@@ -107,9 +108,8 @@ public class UniversitySearchForm extends javax.swing.JDialog {
         }
 
 
-
         try {
-            //edw prwta psaxnw apo th vash.
+            //An vrw to panepistimio sth vash emfanise th forma gia to panepistimio
            University u = Connector.getUniversityByName(universityName);
            UniversityForm.showUniversityForm(u);
         }//an de vrw kat sth vash tote pairnw exception kai paw kai psaxnw sto API
