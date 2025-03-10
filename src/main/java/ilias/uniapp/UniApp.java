@@ -1,13 +1,11 @@
 package ilias.uniapp;
 
 import ilias.uniapp.Forms.MainForm;
-import ilias.uniapp.db.University;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
-import java.util.ArrayList;
+
 
 public class UniApp {
 

@@ -1,10 +1,10 @@
 ----------------------------------------------------------------
-Tue Feb 25 11:12:19 EET 2025:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-0195-3c60-ec2b-00000ec4c638 
-on database directory C:\Derby\UniversityDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
+Mon Mar 10 18:48:03 EET 2025:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-0195-80f4-d1da-00000de13260 
+on database directory C:\Derby\UniversityDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@73d16e93 
 Loaded from file:/C:/Users/Ilias/.m2/repository/org/apache/derby/derby/10.16.1.1/derby-10.16.1.1.jar
-java.vendor=Oracle Corporation
-java.runtime.version=20.0.1+9-29
+java.vendor=Eclipse Adoptium
+java.runtime.version=17.0.9+9
 user.dir=C:\Users\Ilias\Desktop\UniApp
 os.name=Windows 11
 os.arch=amd64

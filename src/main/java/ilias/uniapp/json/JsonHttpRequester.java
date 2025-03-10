@@ -4,7 +4,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import ilias.uniapp.db.Connector;
 import ilias.uniapp.db.University;
 
 import java.io.IOException;
